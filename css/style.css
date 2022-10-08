@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
+
+/* GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ededed;
+    font-family: 'Lato', sans-serif;
+}
+html {
+    font-size: 62.5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #171717;
+    position: sticky;
+    top: 0;
+    height: 5vh;
+    width: 100%;
+    z-index: 1;
+    padding: 30px 20px;
+}
+
+.header__content {
+    margin: 0 auto;
+}
+
+.header__content__navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__content__navbar-item {
+    color: #fff;
+    font-size: 2em;
+    margin-right: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.header__content__navbar-item:hover {
+    color: blue
+}
+
+/* ICONO MENU HAMBURGESA */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger__bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+
+/* MAIN */
+.container {
+    height: 88.5vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container__balance {
+    display: grid;
+    grid-template-areas: 
+    "general gastos"
+    "general ingresos"
+    "registros registros"
+    "registros registros"
+    "botones botones";
+    grid-gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contaner__balance-text {
+    color: #171717;
+    font-size: 1.7em;
+}
+
+.container__balance-general,
+.container__balance-gastos,
+.container__balance-ingresos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container__balance-general {
+    grid-area: general;
+    border-radius: 18px;
+    background: #ededed;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    height: 100%;
+    width: 250px;
+}
+
+.container__balance-gastos {
+    grid-area: gastos;
+    border-radius: 18px;
+    background: #ededed;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    height: 75px;
+    width: 250px;
+}
+
+.container__balance-ingresos {
+    grid-area: ingresos;
+    border-radius: 18px;
+    background: #ededed;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    height: 75px;
+    width: 250px;
+}
+
+.container__registros {
+    grid-area: registros;
+    border-radius: 18px;
+    background: #ededed;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    width: 520px;
+    height: 300px;
+    padding: 20px;
+}
+
+.container__buttons {
+    grid-area: botones;
+    display: flex;
+}
+.container__buttons--gasto,
+.container__buttons--ingreso {
+    margin: 20px 20px 0 0;
+    border: none;
+    width: 130px;
+    height: 80px;
+    font-size: 1.8em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.container__buttons--gasto{
+    color: #fff;
+    background: #b42929;
+    border-radius: 12px;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+}
+
+.container__buttons--ingreso{
+    background-color: #3c3caf;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+}
+
+.container__buttons--gasto:active{
+    box-shadow: inset 20px 20px 60px #990000,
+    inset -20px -20px 60px #cf0000;
+}
+
+.container__buttons--ingreso:active{
+    box-shadow: inset 20px 20px 60px #000098,
+    inset -20px -20px 60px #0000ce;;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    background-color: #171717;
+}
+
+.footer H2 {
+    color: #fff;
+    font-size: 2em;
+}
+
+
+
+/* MEDIAQUERIES */
+@media screen and (max-width: 815px) {
+    /* MENU HAMBURGUESA */
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .hamburger__bar:nth-child(2){
+        opacity: 0;
+    }
+
+    .hamburger.active .hamburger__bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .hamburger__bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg)
+    }
+
+    .header__content__navbar {
+        background: rgba(0, 0, 0);
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        row-gap: 10px;
+        padding-top: 80px;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 0 auto;
+        transition: 0.3s;
+    }
+
+    .header__content__navbar.active {
+        left: 0;
+    }
+}
