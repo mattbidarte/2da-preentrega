@@ -13,7 +13,7 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 
 
 // APP
-let balance = 10000
+let balance = 0
 let gastoMes = 0
 let ingresoMes = 0
 let balanceArray = []
@@ -49,7 +49,7 @@ function registroGasto(detalleGasto){
     let montoGasto = parseFloat(prompt(`¿Cual es el monto?`))
 
     if(montoGasto <= balance){
-        alert(`Gasto registrado correctamente\nSe gasto $${montoGasto} en ${detalleGasto}.`)
+        alert(`Gasto registrado correctamente\nSe gastó $${montoGasto} en ${detalleGasto}.`)
         
         balanceArray.push(new Gasto(detalleGasto, montoGasto))
         gastoMes += montoGasto
@@ -58,23 +58,28 @@ function registroGasto(detalleGasto){
         
         entrar()
     }else{
-        alert(`El gasto supera al saldo total.\nTu saldo es $${balance}\nVuelve a intentarlo`)
+        alert(`El gasto supera al saldo total.\nTu saldo es $${balance}\nVuelve a intentarlo.`)
         entrar()
     }
 }
 
 function registroIngreso(){
     let detalleIngreso = prompt(`¿Detalle del ingreso?`)
-    let montoIngreso = Number(prompt(`¿Cual es el monto?`))
-
-    alert(`Ingreso registrado correctamente\nDetalle del ingreso ${detalleIngreso}, monto $${montoIngreso}`)
-    
-    balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
-    ingresoMes += montoIngreso
-    balance += montoIngreso
-    console.log(balanceArray)
-
-    entrar()
+    if (detalleIngreso == ''){
+        alert('No dejes el espacio en blanco.')
+        entrar()
+    }else{
+        let montoIngreso = Number(prompt(`¿Cual es el monto?`))
+        
+        alert(`Ingreso registrado correctamente\nDetalle del ingreso ${detalleIngreso}, monto $${montoIngreso}`)
+        
+        balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
+        ingresoMes += montoIngreso
+        balance += montoIngreso
+        console.log(balanceArray)
+        
+        entrar()
+    }
 }
 
 function verDetalles(){
@@ -95,12 +100,12 @@ function entrar() {
             break
         case "2":
             if(balance == 0){
-                alert(`Aún tenes un saldo de $0, no podes registrar un gasto.`)
+                alert(`Aún tienes un saldo de $0, no puedes registrar un gasto.`)
                 entrar()
             }else{
                 let detalleGasto = prompt(`¿Detalle del gasto?`)
                 if (detalleGasto == ''){
-                    alert('No dejes el espacio en blanco')
+                    alert('No dejes el espacio en blanco.')
                     entrar()
                 }else{
                     registroGasto(detalleGasto)
