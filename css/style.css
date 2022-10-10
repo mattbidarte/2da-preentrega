@@ -96,21 +96,28 @@ ul {
     "registros registros"
     "registros registros"
     "botones botones";
+    grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .contaner__balance-text {
     color: #171717;
-    font-size: 1.7em;
+    font-size: 2em;
+    font-weight: 400;
+}
+.general {
+    font-weight: 700;
+    font-size: 2.3em
 }
 
 .container__balance-general,
 .container__balance-gastos,
 .container__balance-ingresos {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
     width: 100%;
@@ -144,7 +151,6 @@ ul {
     background: #ededed;
     box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
     width: 100%;
-    max-width: 500px;
     height: 300px;
     padding: 20px;
 }
@@ -195,11 +201,13 @@ ul {
     justify-content: center;
     height: 5vh;
     background-color: #171717;
+    padding: 30px;
 }
 
 .footer H2 {
     color: #fff;
     font-size: 2em;
+    text-align: center;
 }
 
 
