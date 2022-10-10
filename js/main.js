@@ -18,21 +18,15 @@ let gastoMes = 0
 let ingresoMes = 0
 let balanceArray = []
 
+//PLANTILLA OBJETOS
 class Gasto {
     constructor (detalle, monto){
         this.tipo = 'Gasto'
         this.detalle = detalle
         this.monto = parseFloat(monto)
         this.fecha = new Date()
-        // this.registrarGasto = function() {
-        //     gastoMes += this.monto
-        //     balance -= this.monto
-        // }
+        this.fecha = this.fecha.toLocaleDateString()
     }
-    /* registrarGasto() {
-        gastoMes += this.monto
-        balance -= this.monto
-    } */
 }
 
 class Ingreso {
@@ -41,11 +35,8 @@ class Ingreso {
         this.detalle = detalle
         this.monto = parseFloat(monto)
         this.fecha = new Date()
+        this.fecha = this.fecha.toLocaleDateString()
     }
-    /* registrarIngreso() {
-        ingresoMes += this.monto
-        balance += this.monto
-    } */
 }
 
 // FUNCIONES
@@ -89,7 +80,7 @@ function registroIngreso(){
 function verDetalles(){
     const detalles = balanceArray.map((de) => de.detalle)
     const tipos = balanceArray.map((ti) => ti.tipo)
-    alert(`Tipo: ${tipos} Detalle: ${detalles}`)
+    alert(`Tipo: ${tipos}\nDetalle: ${detalles}`)
 
     entrar()
 }
@@ -108,7 +99,12 @@ function entrar() {
                 entrar()
             }else{
                 let detalleGasto = prompt(`¿Detalle del gasto?`)
-                registroGasto(detalleGasto)
+                if (detalleGasto == ''){
+                    alert('No dejes el espacio en blanco')
+                    entrar()
+                }else{
+                    registroGasto(detalleGasto)
+                }
             }
             break
         case "3":
@@ -125,8 +121,3 @@ function entrar() {
             entrar()
     }
 }
-
-// LLAMADO DE FUNCION PRINCIPAL
-entrar()
-
-
