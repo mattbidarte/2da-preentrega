@@ -18,6 +18,12 @@ let gastoMes = 0
 let ingresoMes = 0
 let balanceArray = []
 
+//DOM
+let tgeneral = document.querySelector('#tgeneral')
+let tgasto = document.querySelector('#tgasto')
+let tingreso = document.querySelector('#tingreso')
+let tregistro = document.querySelector('#tregistro')
+
 //PLANTILLA OBJETOS
 class Gasto {
     constructor (detalle, monto){
@@ -92,7 +98,7 @@ function verDetalles(){
 
 // FUNCION PRINCIPAL
 function entrar() {
-    let op = prompt(`¿Que operación deseas hacer?\n\n1: Ver saldo total\n2: Registrar gasto\n3: Registrar ingreso\n4: Ver detalles\n5: Salir`)
+    let op = prompt(`¿Que operación deseas hacer?\n\n1: Ver saldo total\n2: Registrar gasto\n3: Registrar ingreso\n4: Ver detalles\n5: Salir y ver resultado`)
     
     switch(op){
         case "1":
@@ -120,6 +126,10 @@ function entrar() {
             break
         case "5":
             alert(`Que tenga un lindo dia!`)
+            //DOM
+            tgeneral.innerHTML += ` ${balance}`
+            tgasto.innerHTML += ` ${gastoMes}`
+            tingreso.innerHTML += ` ${ingresoMes}`
             break;
         default:
             alert('Operación invalida...')
