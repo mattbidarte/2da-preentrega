@@ -19,10 +19,10 @@ let ingresoMes = 0
 let balanceArray = []
 
 //DOM
-let tgeneral = document.querySelector('#tgeneral')
-let tgasto = document.querySelector('#tgasto')
-let tingreso = document.querySelector('#tingreso')
-let tregistro = document.querySelector('#tregistro')
+const tgeneral = document.querySelector('#tgeneral')
+const tgasto = document.querySelector('#tgasto')
+const tingreso = document.querySelector('#tingreso')
+const tregistro = document.querySelector('#tregistro')
 
 //PLANTILLA OBJETOS
 class Gasto {
@@ -97,7 +97,7 @@ function verDetalles(){
 }
 
 // FUNCION PRINCIPAL
-function entrar() {
+/* function entrar() {
     let op = prompt(`¿Que operación deseas hacer?\n\n1: Ver saldo total\n2: Registrar gasto\n3: Registrar ingreso\n4: Ver detalles\n5: Salir y ver resultado`)
     
     switch(op){
@@ -135,4 +135,8 @@ function entrar() {
             alert('Operación invalida...')
             entrar()
     }
-}
+} */
+
+const btnIngreso = document.querySelector('#btnIngreso')
+
+btnIngreso.onclick = registroIngreso
