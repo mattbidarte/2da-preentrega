@@ -13,9 +13,14 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 
 
 // APP
-let balance = 0
+/* let balance = 0
 let gastoMes = 0
 let ingresoMes = 0
+let balanceArray = [] */
+
+localStorage.balance = localStorage.balance || "0"
+localStorage.gastoMes = localStorage.gastoMes || "0"
+localStorage.ingresoMes = localStorage.ingresoMes || "0"
 let balanceArray = []
 
 //DOM
@@ -47,19 +52,19 @@ class Ingreso {
 
 // FUNCIONES
 function verTotal(){
-    alert(`El total registrado es de: $${balance}`)
+    alert(`El total registrado es de: $${localStorage.balance}`)
     entrar()
 }
 
 function registroGasto(detalleGasto){
     let montoGasto = parseFloat(prompt(`¿Cual es el monto?`))
 
-    if(montoGasto <= balance){
+    if(montoGasto <= localStorage.balance){
         alert(`Gasto registrado correctamente\nSe gastó $${montoGasto} en ${detalleGasto}.`)
         
         balanceArray.push(new Gasto(detalleGasto, montoGasto))
-        gastoMes += montoGasto
-        balance -= montoGasto
+        localStorage.gastoMes = montoGasto + Number(localStorage.gastoMes)
+        localStorage.balance = Number(localStorage.balance) - montoGasto
         console.log(balanceArray)
         
         entrar()
@@ -71,6 +76,7 @@ function registroGasto(detalleGasto){
 
 function registroIngreso(){
     let detalleIngreso = prompt(`¿Detalle del ingreso?`)
+
     if (detalleIngreso == ''){
         alert('No dejes el espacio en blanco.')
         entrar()
@@ -80,8 +86,8 @@ function registroIngreso(){
         alert(`Ingreso registrado correctamente\nDetalle del ingreso ${detalleIngreso}, monto $${montoIngreso}`)
         
         balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
-        ingresoMes += montoIngreso
-        balance += montoIngreso
+        localStorage.ingresoMes = montoIngreso + Number(localStorage.ingresoMes)
+        localStorage.balance = montoIngreso + Number(localStorage.balance)
         console.log(balanceArray)
         
         entrar()
@@ -105,7 +111,7 @@ function entrar() {
             verTotal()
             break
         case "2":
-            if(balance == 0){
+            if(localStorage.balance == 0){
                 alert(`Aún tienes un saldo de $0, no puedes registrar un gasto.`)
                 entrar()
             }else{
@@ -127,9 +133,9 @@ function entrar() {
         case "5":
             alert(`Que tenga un lindo dia!`)
             //DOM
-            tgeneral.innerHTML += ` ${balance}`
-            tgasto.innerHTML += ` ${gastoMes}`
-            tingreso.innerHTML += ` ${ingresoMes}`
+            tgeneral.innerHTML += ` ${localStorage.balance}`
+            tgasto.innerHTML += ` ${localStorage.gastoMes}`
+            tingreso.innerHTML += ` ${localStorage.ingresoMes}`
             break;
         default:
             alert('Operación invalida...')
