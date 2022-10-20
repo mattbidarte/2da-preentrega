@@ -13,15 +13,15 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 
 
 // APP
-/* let balance = 0
-let gastoMes = 0
-let ingresoMes = 0
-let balanceArray = [] */
+
+// Variables en localStorage
+let balanceArray = []
 
 localStorage.balance = localStorage.balance || "0"
 localStorage.gastoMes = localStorage.gastoMes || "0"
 localStorage.ingresoMes = localStorage.ingresoMes || "0"
-let balanceArray = []
+localStorage.arrayBalance = localStorage.arrayBalance || ""
+
 
 //DOM
 let tgeneral = document.querySelector('#tgeneral')
@@ -85,11 +85,14 @@ function registroIngreso(){
         
         alert(`Ingreso registrado correctamente\nDetalle del ingreso ${detalleIngreso}, monto $${montoIngreso}`)
         
-        balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
         localStorage.ingresoMes = montoIngreso + Number(localStorage.ingresoMes)
         localStorage.balance = montoIngreso + Number(localStorage.balance)
+
+        balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
+        localStorage.arrayBalance += JSON.stringify(balanceArray)
+
         console.log(balanceArray)
-        
+
         entrar()
     }
 }
