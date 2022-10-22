@@ -13,14 +13,12 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 
 
 // APP
-
-// Variables en localStorage
-let balanceArray = []
-
-localStorage.balance = localStorage.balance || "0"
-localStorage.gastoMes = localStorage.gastoMes || "0"
-localStorage.ingresoMes = localStorage.ingresoMes || "0"
-localStorage.arrayBalance = localStorage.arrayBalance || ""
+if(localStorage.length === 0){
+    localStorage.setItem('balance', 0)
+    localStorage.setItem('gastoMes', 0)
+    localStorage.setItem('ingresoMes', 0)
+    localStorage.setItem('arrayBalance', "[]")
+}
 
 
 //DOM
@@ -28,6 +26,7 @@ let tgeneral = document.querySelector('#tgeneral')
 let tgasto = document.querySelector('#tgasto')
 let tingreso = document.querySelector('#tingreso')
 let tregistro = document.querySelector('#tregistro')
+let divRegistros = document.querySelector('#container__registros')
 
 //PLANTILLA OBJETOS
 class Gasto {
@@ -52,7 +51,7 @@ class Ingreso {
 
 // FUNCIONES
 function verTotal(){
-    alert(`El total registrado es de: $${localStorage.balance}`)
+    alert(`El total registrado es de: $${balance}`)
     entrar()
 }
 
@@ -62,10 +61,18 @@ function registroGasto(detalleGasto){
     if(montoGasto <= localStorage.balance){
         alert(`Gasto registrado correctamente\nSe gastó $${montoGasto} en ${detalleGasto}.`)
         
-        balanceArray.push(new Gasto(detalleGasto, montoGasto))
-        localStorage.gastoMes = montoGasto + Number(localStorage.gastoMes)
-        localStorage.balance = Number(localStorage.balance) - montoGasto
-        console.log(balanceArray)
+        let balance = Number(localStorage.balance) - montoGasto
+        let gastoMes = montoGasto + Number(localStorage.gastoMes)
+
+        localStorage.setItem('balance', balance)
+        localStorage.setItem('gastoMes', gastoMes)
+        
+        let arrayBalance = JSON.parse(localStorage.getItem('arrayBalance'))
+        arrayBalance.push(new Gasto(detalleGasto, montoGasto))
+
+        localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
+
+        console.log(localStorage.arrayBalance)
         
         entrar()
     }else{
@@ -80,19 +87,24 @@ function registroIngreso(){
     if (detalleIngreso == ''){
         alert('No dejes el espacio en blanco.')
         entrar()
+
     }else{
         let montoIngreso = Number(prompt(`¿Cual es el monto?`))
-        
         alert(`Ingreso registrado correctamente\nDetalle del ingreso ${detalleIngreso}, monto $${montoIngreso}`)
         
-        localStorage.ingresoMes = montoIngreso + Number(localStorage.ingresoMes)
-        localStorage.balance = montoIngreso + Number(localStorage.balance)
+        let balance = montoIngreso + Number(localStorage.balance)
+        let ingresoMes = montoIngreso + Number(localStorage.ingresoMes)
 
-        balanceArray.push(new Ingreso(detalleIngreso, montoIngreso))
-        localStorage.arrayBalance += JSON.stringify(balanceArray)
+        localStorage.setItem('balance', balance)
+        localStorage.setItem('ingresoMes', ingresoMes)
 
-        console.log(balanceArray)
+        let arrayBalance = JSON.parse(localStorage.getItem('arrayBalance'))
+        arrayBalance.push(new Ingreso(detalleIngreso, montoIngreso))
 
+        localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
+
+        console.log(localStorage.arrayBalance)
+        
         entrar()
     }
 }
@@ -135,6 +147,19 @@ function entrar() {
             break
         case "5":
             alert(`Que tenga un lindo dia!`)
+
+            console.log(JSON.parse(localStorage.arrayBalance))
+
+            const recibo = JSON.parse(localStorage.arrayBalance)
+            
+            recibo.forEach((item, index) => {
+                const div = document.createElement("div")
+                div.className = `container__registros-item`
+                div.id = `container__registros-item`
+                div.innerHTML = `<p><span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${item.monto}</p>`
+                divRegistros.appendChild(div)
+              });
+
             //DOM
             tgeneral.innerHTML += ` ${localStorage.balance}`
             tgasto.innerHTML += ` ${localStorage.gastoMes}`
