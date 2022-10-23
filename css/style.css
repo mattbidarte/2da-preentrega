@@ -161,6 +161,7 @@ ul {
 
 .tRegistros{
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .container__registros-item{
@@ -219,6 +220,19 @@ ul {
     inset -20px -20px 60px #0000ce;;
 }
 
+.btnReiniciar {
+    border: none;
+    background-color: transparent;
+    margin-top: 10px;
+    font-size: 1.5em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btnReiniciar:hover {
+    color: #990000;
+}
+
 /* FOOTER */
 .footer {
     display: flex;
@@ -233,6 +247,56 @@ ul {
     color: #fff;
     font-size: 2em;
     text-align: center;
+}
+
+.tRegistroIngreso {
+    font-size: 3em;
+    position: absolute;
+    top: 200px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formInput {
+    border: none;
+    border-bottom: 2px solid #171717;
+    margin-bottom: 20px;
+    font-size: 2em;
+    background-color: #ededed;
+    padding-bottom: 5px;
+    border-radius: 3px;
+}
+
+.formInput:focus {
+    outline: none;
+    background-color: #fff;
+}
+
+.btnRegistroIngreso {
+    border: none;
+    background-color: #000098;
+    color: #fff;
+    padding: 5px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnVolver {
+    border: none;
+    background-color: #990000;
+    color: #fff;
+    padding: 5px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 

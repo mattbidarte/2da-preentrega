@@ -9,7 +9,8 @@
 
     <title>App Resgistros de gastos (2da Preentrega)</title>
 </head>
-<body onload="entrar()">
+<!-- onload="entrar()" -->
+<body>
     <!-- HEADER CON NAVBAR -->
     <header class="header">
         <div class="header__content">
@@ -32,7 +33,7 @@
 
     <main class="main">
         <!-- CONTAINER PRINCIPAL -->
-        <section class="container">
+        <section id="container" class="container">
             <!-- BALANCE TOTAL -->
             <div class="container__balance">
                 <div class="container__balance-general">
@@ -53,15 +54,22 @@
 
             <!-- BOTONES -->
             <div class="container__buttons">
-                <button class="container__buttons--gasto">Registrar gasto</button>
-                <button class="container__buttons--ingreso">Registrar ingreso</button>
+                <button id="container__buttons--gasto" class="container__buttons--gasto">Registrar gasto</button>
+                <button id="container__buttons--ingreso" class="container__buttons--ingreso">Registrar ingreso</button>
             </div>
+
+            <div>
+                <button id="btnReiniciar" class="btnReiniciar">Reiniciar valores</button>
+            </div>
+
         </section>
+
+
 
     </main>
 
     <footer class="footer">
-        <h2>2da Pre-entrega hecha por Matias Bidarte</h2>
+        <h2>3ra Pre-entrega hecha por Matias Bidarte</h2>
     </footer>
 
     <script src="./js/main.js"></script>
