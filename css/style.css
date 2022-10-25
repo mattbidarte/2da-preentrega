@@ -11,6 +11,8 @@
 body {
     background-color: #ededed;
     font-family: 'Lato', sans-serif;
+    position: relative;
+    min-height: 100vh;
 }
 
 html {
@@ -25,22 +27,22 @@ ul {
     list-style: none;
 }
 
-
 /* HEADER */
 .header {
-    display: flex;
-    align-items: center;
-    background-color: #171717;
-    position: sticky;
+    position: fixed;
     top: 0;
-    height: 5vh;
     width: 100%;
-    z-index: 2;
-    padding: 30px 20px;
+    height: 60px;
+    background-color: #171717;
 }
 
 .header__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
     margin: 0 auto;
+    text-transform: uppercase;
 }
 
 .header__content__navbar {
@@ -51,7 +53,7 @@ ul {
 
 .header__content__navbar-item {
     color: #fff;
-    font-size: 2em;
+    font-size: 1.5em;
     margin-right: 20px;
     transition: all 0.2s ease-in-out;
 }
@@ -80,20 +82,17 @@ ul {
 
 /* MAIN */
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
-
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: calc(100vh - 120px);
     width: 80vw;
-    padding: 20px;
+    margin: 0 auto;
 }
 
 .container__balance {
@@ -243,6 +242,8 @@ ul {
 /* FOOTER */
 .footer {
     width: 100%;
+    position: absolute;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
