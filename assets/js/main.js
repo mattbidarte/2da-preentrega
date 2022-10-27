@@ -1,4 +1,4 @@
-// MENU HAMBURGESA
+// ------------MENU HAMBURGESA------------
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".header__content__navbar");
 
@@ -12,9 +12,8 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 }))
 
 
-// APP
-
-//PLANTILLA OBJETOS
+// -------------------APP--------------------------
+// PLANTILLA OBJETOS
 class Gasto {
     constructor (detalle, monto){
         this.tipo = 'Gasto'
@@ -35,22 +34,21 @@ class Ingreso {
     }
 }
 
-// GENERAR VARIABLES EN LOCALSTORAGE
-if(localStorage.length === 0){
-    localStorage.setItem('balance', 0)
-    localStorage.setItem('gastoMes', 0)
-    localStorage.setItem('ingresoMes', 0)
+// CREAR VARIABLES EN LOCALSTORAGE
+localStorage.length === 0 && (
+    localStorage.setItem('balance', 0),
+    localStorage.setItem('gastoMes', 0),
+    localStorage.setItem('ingresoMes', 0),
     localStorage.setItem('arrayBalance', "[]")
-}
+)
 
-//DOM
+// DOM
 const container = document.querySelector('#container')
 const tgeneral = document.querySelector('#tgeneral')
 const tgasto = document.querySelector('#tgasto')
 const tingreso = document.querySelector('#tingreso')
 const tregistro = document.querySelector('#tregistro')
 const divRegistros = document.querySelector('#container__registros')
-
 
 tgeneral.innerHTML = `Balance general: $${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
 tgasto.innerHTML = `Gasto mensual: $${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
@@ -60,16 +58,16 @@ tingreso.innerHTML = `Ingreso mensual: $${new Intl.NumberFormat('de-DE').format(
 const btnGasto = document.querySelector('#container__buttons--gasto')
 const btnIngreso = document.querySelector('#container__buttons--ingreso')
 
-// MUESTREO DE REGISTROS
+// MUESTREO DE REGISTROS EN DIV
 console.log(JSON.parse(localStorage.arrayBalance))
-
 const reciboArray = JSON.parse(localStorage.arrayBalance)
-reciboArray.reverse()
+reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
 
 reciboArray.forEach((item, index) => {
     const div = document.createElement("div")
     div.className = `container__registros-item`
     div.id = `container__registros-item`
+    //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
     if(item.tipo === "Ingreso"){
         div.innerHTML = `<p><img src="./assets/img/arrowup.png" alt="" width=15px> <span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     } else {
@@ -78,6 +76,7 @@ reciboArray.forEach((item, index) => {
     divRegistros.appendChild(div)
 });
 
+// -------------------EVENTOS BOTONES------------------------
 // EVENTO CLICK BOTON INGRESO
 btnIngreso.addEventListener('click', () => {
     container.innerHTML= `
@@ -96,12 +95,9 @@ btnIngreso.addEventListener('click', () => {
 
     btnRegistroIngreso.addEventListener('click', (e) => {
         e.preventDefault();
-
         if (inpDetalle.value == "" || inpMonto.value == "") {
             alert("No dejes espacios en blanco")
         }else {
-            alert(`Ingreso registrado correctamente.`)
-
             let balance = +inpMonto.value + Number(localStorage.balance)
             let ingresoMes = +inpMonto.value + Number(localStorage.ingresoMes)
 
@@ -112,6 +108,8 @@ btnIngreso.addEventListener('click', () => {
             arrayBalance.push(new Ingreso(inpDetalle.value, inpMonto.value))
             localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
             console.log(localStorage.arrayBalance)
+
+            alert(`Ingreso registrado correctamente.`)
 
             inpDetalle.value = ""
             inpMonto.value = ""
@@ -140,7 +138,6 @@ btnGasto.addEventListener('click', () => {
 
     btnRegistroIngreso.addEventListener('click', (e) => {
         e.preventDefault();
-
         if (inpDetalle.value == "" || inpMonto.value == "") {
             alert("No dejes espacios en blanco")
         }else {
@@ -148,8 +145,6 @@ btnGasto.addEventListener('click', () => {
                 alert(`El monto supera al balance general\nBalance: $${localStorage.balance}`)
                 location.reload()
             }else {
-                alert(`Gasto registrado correctamente.`)
-
                 let balance = Number(localStorage.balance) - Number(inpMonto.value)
                 let gastoMes = +inpMonto.value + Number(localStorage.gastoMes)
 
@@ -160,6 +155,8 @@ btnGasto.addEventListener('click', () => {
                 arrayBalance.push(new Gasto(inpDetalle.value, inpMonto.value))
                 localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
                 console.log(localStorage.arrayBalance)
+
+                alert(`Gasto registrado correctamente.`)
 
                 inpDetalle.value = ""
                 inpMonto.value = ""
@@ -175,10 +172,10 @@ btnGasto.addEventListener('click', () => {
 let btnReiniciar = document.querySelector('#btnReiniciar')
 
 btnReiniciar.addEventListener('click', () =>{
-    if(confirm('¿Estas seguro? Se reiniciaran todos los valores') == true){
-        localStorage.clear()
+    confirm('¿Estas seguro? Se reiniciaran todos los valores') == true && (
+        localStorage.clear(),
         location.reload()
-    }  
+    )
 })
 
 
