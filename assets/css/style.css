@@ -302,6 +302,10 @@ ul {
     cursor: pointer;
 }
 
+.tostada {
+    font-size: 2em;
+}
+
 /*=============== MEDIAQUERIES ===============*/
 @media screen and (max-width: 815px) {
     /* MENU HAMBURGUESA */

@@ -110,7 +110,15 @@ btnIngreso.addEventListener('click', () => {
             localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
             console.log(localStorage.arrayBalance)
 
-            alert(`Ingreso registrado correctamente.`)
+            Toastify({
+                text: "Ingreso registrado correctamente!",
+                duration: 3000,
+                offset: {
+                    x: 50, 
+                    y: 60
+                },
+                className: "tostada"
+            }).showToast();
 
             inpDetalle.value = ""
             inpMonto.value = ""
@@ -158,8 +166,16 @@ btnGasto.addEventListener('click', () => {
                 localStorage.setItem("arrayBalance", JSON.stringify(arrayBalance));
                 console.log(localStorage.arrayBalance)
 
-                alert(`Gasto registrado correctamente.`)
-
+                Toastify({
+                    text: "Gasto registrado correctamente!",
+                    duration: 3000,
+                    offset: {
+                        x: 50, 
+                        y: 60
+                    },
+                    className: "tostada"
+                }).showToast();
+            
                 inpDetalle.value = ""
                 inpMonto.value = ""
             }
@@ -174,11 +190,29 @@ btnGasto.addEventListener('click', () => {
 let btnReiniciar = document.querySelector('#btnReiniciar')
 
 btnReiniciar.addEventListener('click', () =>{
-    confirm('¿Estas seguro? Se reiniciaran todos los valores') == true && (
-        localStorage.clear(),
-        location.reload()
-    )
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "Se reiniciaran todos los valores",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, reiniciar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Datos borrados!',
+            'Se han reiniciado los valores',
+            'success',
+          )
+        localStorage.clear()
+        setTimeout(()=> {
+            location.reload()
+        }, 1500)
+        }
+      })
 })
+
 
 
 
