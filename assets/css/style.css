@@ -15,8 +15,9 @@ html {
 body {
     background-color: #ededed;
     font-family: 'Lato', sans-serif;
-    position: relative;
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -29,8 +30,6 @@ ul {
 
 /*=============== HEADER ===============*/
 .header {
-    position: fixed;
-    top: 0;
     width: 100%;
     height: 60px;
     background-color: #171717;
@@ -62,7 +61,7 @@ ul {
     color: blue
 }
 
-/* ICONO MENU HAMBURGESA */
+/*=============== ICON HAMBURGER MENU ===============*/
 .hamburger {
     display: none;
     cursor: pointer;
@@ -81,27 +80,27 @@ ul {
 
 /*=============== MAIN ===============*/
 .main {
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-.container {
-    /* display: flex;
+    padding: 60px 0;
+    flex: 1 0 auto;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
+}
+.container {
     display: grid;
     grid-template-areas: 
     "general gastos"
     "general ingresos"
     "registros registros"
-    "botones botones";
+    "botones botones"
+    "btnReiniciar btnReiniciar";
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px 300px 70px 10px;
     gap: 2em;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px);
     width: 80vw;
-    margin: 0 auto;
 }
 
 .contaner__balance-text {
@@ -112,7 +111,20 @@ ul {
 
 .general {
     font-weight: 700;
-    font-size: 2.1em
+    font-size: 2.2em;
+    text-align: center;
+}
+
+.container__balance-general {
+    grid-area: general;
+}
+
+.container__balance-gastos {
+    grid-area: gastos;
+}
+
+.container__balance-ingresos {
+    grid-area: ingresos;
 }
 
 .container__balance-general,
@@ -127,21 +139,6 @@ ul {
     border-radius: 18px;
     background: #ededed;
     box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
-}
-
-.container__balance-general {
-    grid-area: general;
-    height: 200px;
-}
-
-.container__balance-gastos {
-    grid-area: gastos;
-    height: 100px;
-}
-
-.container__balance-ingresos {
-    grid-area: ingresos;
-    height: 100px;
 }
 
 .container__registros {
@@ -179,6 +176,7 @@ ul {
 .container__buttons {
     grid-area: botones;
     display: flex;
+    justify-content: center;
 }
 .container__buttons--gasto,
 .container__buttons--ingreso {
@@ -215,12 +213,16 @@ ul {
     inset -20px -20px 60px #0000ce;;
 }
 
+.containerBtnReiniciar {
+    grid-area: btnReiniciar;
+    display: flex;
+    justify-content: center;
+}
+
 .btnReiniciar {
     border: none;
     background-color: transparent;
-    margin-top: 10px;
     font-size: 1.5em;
-    padding: 10px;
     cursor: pointer;
 }
 
@@ -228,17 +230,20 @@ ul {
     color: #990000;
 }
 
-/* FOOTER */
+/*=============== FOOTER ===============*/
 .footer {
-    width: 100%;
-    position: absolute;
+    display: block;
     bottom: 0;
+    width: 100%;
+    background-color: #171717;
+    align-self: flex-end;
+}
+
+.footerContainer {
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5vh;
-    background-color: #171717;
-    padding: 30px;
 }
 
 .footer H2 {
@@ -248,7 +253,7 @@ ul {
 }
 
 
-/* innerHTML DOM */
+/*=============== INNERHTML DOM ===============*/
 .tRegistroIngreso {
     font-size: 3em;
 }
@@ -263,7 +268,7 @@ ul {
 
 .formInput {
     border: none;
-    border-bottom: 2px solid #171717;
+    border-bottom: 1px solid #171717;
     margin-bottom: 20px;
     font-size: 2em;
     background-color: #ededed;
@@ -299,7 +304,7 @@ ul {
 
 
 
-/* MEDIAQUERIES */
+/*=============== MEDIAQUERIES ===============*/
 @media screen and (max-width: 815px) {
     /* MENU HAMBURGUESA */
     .hamburger {
@@ -336,13 +341,21 @@ ul {
     .header__content__navbar.active {
         left: 0;
     }
-    .container {   
+    .main {
+        padding: 20px 0;
+    }
+    .container {
         grid-template-areas: 
         "general general"
         "gastos gastos"
         "ingresos ingresos"
         "registros registros"
-        "registros registros"
-        "botones botones";
+        "botones botones"
+        "btnReiniciar btnReiniciar";
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 100px 100px 300px 70px 10px;
+    }
+    .contaner__balance-text {
+        text-align: center;
     }
 }

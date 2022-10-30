@@ -1,4 +1,4 @@
-// ------------MENU HAMBURGESA------------
+// =============== HAMBURGUER MENU ===============
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".header__content__navbar");
 
@@ -12,8 +12,8 @@ document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEve
 }))
 
 
-// -------------------APP--------------------------
-// PLANTILLA OBJETOS
+// =============== APP ===============
+// =============== PLANTILLA OBJETOS ===============
 class Gasto {
     constructor (detalle, monto){
         this.tipo = 'Gasto'
@@ -34,7 +34,7 @@ class Ingreso {
     }
 }
 
-// CREAR VARIABLES EN LOCALSTORAGE
+// =============== VARIABLES LOCALSTORAGE ===============
 localStorage.length === 0 && (
     localStorage.setItem('balance', 0),
     localStorage.setItem('gastoMes', 0),
@@ -42,7 +42,7 @@ localStorage.length === 0 && (
     localStorage.setItem('arrayBalance', "[]")
 )
 
-// DOM
+// =============== VARIABLES DOM ===============
 const container = document.querySelector('#container')
 const tgeneral = document.querySelector('#tgeneral')
 const tgasto = document.querySelector('#tgasto')
@@ -54,11 +54,11 @@ tgeneral.innerHTML = `Balance general: $${new Intl.NumberFormat('de-DE').format(
 tgasto.innerHTML = `Gasto mensual: $${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
 tingreso.innerHTML = `Ingreso mensual: $${new Intl.NumberFormat('de-DE').format(+localStorage.ingresoMes)}`
 
-//BUTTONS
+// =============== BUTTONS ===============
 const btnGasto = document.querySelector('#container__buttons--gasto')
 const btnIngreso = document.querySelector('#container__buttons--ingreso')
 
-// MUESTREO DE REGISTROS EN DIV
+// =============== MUESTREO REGISTROS ===============
 console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
@@ -76,9 +76,10 @@ reciboArray.forEach((item, index) => {
     divRegistros.appendChild(div)
 });
 
-// -------------------EVENTOS BOTONES------------------------
-// EVENTO CLICK BOTON INGRESO
+// =============== EVENTOS BOTONES ===============
+// =============== CLICK BTN INGRESO ===============
 btnIngreso.addEventListener('click', () => {
+    container.classList.remove("container")
     container.innerHTML= `
     <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
     <form class="form" action="">
@@ -120,8 +121,9 @@ btnIngreso.addEventListener('click', () => {
     })
 })
 
-// EVENTO CLICK BOTON GASTO
+// =============== CLICK BTN GASTO ===============
 btnGasto.addEventListener('click', () => {
+    container.classList.remove("container")
     container.innerHTML= `
     <h2 class="tRegistroIngreso">Registro de Gasto</h2>
     <form class="form" action="">
@@ -168,7 +170,7 @@ btnGasto.addEventListener('click', () => {
     })
 })
 
-// REINICIAR LOCALSTORAGE
+// =============== REINICIAR LOCALSTORAGE ===============
 let btnReiniciar = document.querySelector('#btnReiniciar')
 
 btnReiniciar.addEventListener('click', () =>{
