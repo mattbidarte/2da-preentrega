@@ -302,8 +302,6 @@ ul {
     cursor: pointer;
 }
 
-
-
 /*=============== MEDIAQUERIES ===============*/
 @media screen and (max-width: 815px) {
     /* MENU HAMBURGUESA */
@@ -353,7 +351,7 @@ ul {
         "botones botones"
         "btnReiniciar btnReiniciar";
         grid-template-columns: 1fr;
-        grid-template-rows: 100px 100px 100px 300px 70px 10px;
+        grid-template-rows: 100px 70px 70px 300px 70px 10px;
     }
     .contaner__balance-text {
         text-align: center;
