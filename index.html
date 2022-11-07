@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link CSS -->
+    <!-- =============== LINK CSS =============== -->
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- =============== LINK TOASTIFY =============== -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <!-- =============== LINK SWEETALERT =============== -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <title>App Resgistros de gastos (3ra Preentrega)</title>
 </head>
 <body>
-    <!-- HEADER CON NAVBAR -->
+    <!-- =============== HEADER CON NAVBAR =============== -->
     <header class="header">
         <div class="header__content">
             <nav>
@@ -20,7 +26,7 @@
                     <li><a href="#" class="header__content__navbar-item">Sobre</a></li>
                     <li><a href="#" class="header__content__navbar-item">Contacto</a></li>
                 </ul>
-                <!-- HAMBURGUER MENU -->
+                <!-- =============== HAMBURGER MENU =============== -->
                 <div class="hamburger">
                     <span class="hamburger__bar"></span>
                     <span class="hamburger__bar"></span>
@@ -31,9 +37,9 @@
     </header>
 
     <main class="main">
-        <!-- CONTAINER PRINCIPAL -->
+        <!-- =============== CONTAINER PRINCIPAL =============== -->
         <section id="container" class="container">
-            <!-- BALANCE TOTAL -->
+            <!-- =============== BALANCES =============== -->
             <div class="container__balance-general">
                 <h2 id="tgeneral" class="contaner__balance-text general">Balance general: $</h2>       
             </div>
@@ -43,11 +49,11 @@
             <div class="container__balance-ingresos">
                 <h2 id="tingreso" class="contaner__balance-text">Ingreso mensual: $</h2>
             </div>
-            <!-- LOG DE REGISTROS -->
+            <!-- =============== LOG DE REGISTROS =============== -->
             <div id="container__registros" class="container__registros">
                 <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
             </div>
-            <!-- BOTONES -->
+            <!-- =============== BOTONES =============== -->
             <div class="container__buttons">
                 <button id="container__buttons--gasto" class="container__buttons--gasto">Registrar gasto</button>
                 <button id="container__buttons--ingreso" class="container__buttons--ingreso">Registrar ingreso</button>
@@ -59,14 +65,13 @@
     </main>
 
     <footer class="footer">
+        <!-- =============== FOOTER =============== -->
         <div class="footerContainer">
             <h2>3ra Pre-entrega hecha por Matias Bidarte</h2>
         </div>
     </footer>
 
-
+    <!-- =============== LLAMADOS A SCRIPTS =============== -->
     <script src="./assets/js/main.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

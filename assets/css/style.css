@@ -2,6 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
 
 /*=============== GLOBAL ===============*/
+:root {
+    --shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    --gris: #ededed;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,9 +18,10 @@ html {
 }
 
 body {
-    background-color: #ededed;
+    background-color: var(--gris);
     font-family: 'Lato', sans-serif;
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -26,6 +32,16 @@ a {
 
 ul {
     list-style: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    outline: none;
 }
 
 /*=============== HEADER ===============*/
@@ -51,7 +67,7 @@ ul {
 }
 
 .header__content__navbar-item {
-    color: #fff;
+    color: white;
     font-size: 1.5em;
     margin-right: 20px;
     transition: all 0.2s ease-in-out;
@@ -75,7 +91,7 @@ ul {
     border-radius: 3px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #fff;
+    background-color: white;
 }
 
 /*=============== MAIN ===============*/
@@ -137,15 +153,15 @@ ul {
     width: 100%;
     height: 100%;
     border-radius: 18px;
-    background: #ededed;
-    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    background: var(--gris);
+    box-shadow: var(--shadow);
 }
 
 .container__registros {
     grid-area: registros;
     border-radius: 18px;
-    background: #ededed;
-    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
+    background: var(--gris);
+    box-shadow: var(--shadow);
     width: 100%;
     max-height: 300px;
     min-height: 300px;
@@ -180,27 +196,23 @@ ul {
 }
 .container__buttons--gasto,
 .container__buttons--ingreso {
-    border: none;
     width: 120px;
     height: 70px;
     font-size: 1.8em;
     font-weight: 700;
-    cursor: pointer;
 }
 
 .container__buttons--gasto{
-    color: #fff;
+    color: white;
     background: #b42929;
     border-radius: 12px;
-    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
     margin-right: 1em;
 }
 
 .container__buttons--ingreso{
     background-color: #3c3caf;
-    color: #fff;
+    color: white;
     border-radius: 12px;
-    box-shadow: 9px 9px 21px #c9c9c9, -9px -9px 21px #ffffff;
 }
 
 .container__buttons--gasto:active{
@@ -220,10 +232,8 @@ ul {
 }
 
 .btnReiniciar {
-    border: none;
     background-color: transparent;
     font-size: 1.5em;
-    cursor: pointer;
 }
 
 .btnReiniciar:hover {
@@ -232,7 +242,7 @@ ul {
 
 /*=============== FOOTER ===============*/
 .footer {
-    display: block;
+    position: relative;
     bottom: 0;
     width: 100%;
     background-color: #171717;
@@ -247,8 +257,8 @@ ul {
 }
 
 .footer H2 {
-    color: #fff;
-    font-size: 2em;
+    color: white;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -267,23 +277,22 @@ ul {
 }
 
 .formInput {
-    border: none;
     border-bottom: 1px solid #171717;
     margin-bottom: 20px;
     font-size: 2em;
-    background-color: #ededed;
+    background-color: var(--gris);
     padding: 5px;
 }
 
 .formInput:focus {
     outline: none;
-    background-color: #fff;
+    background-color: white;
 }
 
 .btnRegistroIngreso {
     border: none;
     background-color: rgb(0, 0, 201);
-    color: #fff;
+    color: white;
     padding: 8px;
     font-size: 1.7em;
     border-radius: 5px;
@@ -294,7 +303,7 @@ ul {
 .btnVolver {
     border: none;
     background-color: #990000;
-    color: #fff;
+    color: white;
     padding: 5px;
     font-size: 1.5em;
     border-radius: 5px;
@@ -302,6 +311,7 @@ ul {
     cursor: pointer;
 }
 
+/*=============== TOASTIFY ===============*/
 .tostada {
     font-size: 2em;
 }
@@ -326,7 +336,7 @@ ul {
     }
 
     .header__content__navbar {
-        background: rgba(0, 0, 0);
+        background: #000000;
         height: 100%;
         width: 100%;
         position: fixed;

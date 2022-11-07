@@ -223,8 +223,4 @@ btnReiniciar.addEventListener('click', () =>{
 
 
 
-
-
-
-
  
