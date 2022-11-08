@@ -1,4 +1,4 @@
-/*=============== GLOBAL ===============*/
+/*=============== FONT ===============*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
 
 /*=============== GLOBAL ===============*/
@@ -22,8 +22,8 @@ body {
     font-family: 'Lato', sans-serif;
     height: 100vh;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 a {
@@ -46,34 +46,32 @@ input {
 
 /*=============== HEADER ===============*/
 .header {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 60px;
     background-color: #171717;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
 }
 
-.header__content {
+.header__navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
-    margin: 0 auto;
     text-transform: uppercase;
 }
 
-.header__content__navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header__content__navbar-item {
+.header__navbar-item {
     color: white;
     font-size: 1.5em;
     margin-right: 20px;
     transition: all 0.2s ease-in-out;
 }
 
-.header__content__navbar-item:hover {
+.header__navbar-item:hover {
     color: blue
 }
 
@@ -96,14 +94,15 @@ input {
 
 /*=============== MAIN ===============*/
 .main {
-    padding: 60px 0;
-    flex: 1 0 auto;
+    /* margin-top: 60px; */
+    /* flex: 1 0 auto; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .container {
+    height: 100vh;
     display: grid;
     grid-template-areas: 
     "general gastos"
@@ -115,20 +114,23 @@ input {
     grid-template-rows: 100px 100px 300px 70px 10px;
     gap: 2em;
     justify-content: center;
-    align-items: center;
-    width: 80vw;
+    align-content: center;
+    width: 90vw;
+}
+.container i {
+    font-size: 3em;
 }
 
 .contaner__balance-text {
     color: #171717;
     font-size: 2em;
     font-weight: 400;
+    padding-left: 10px;
 }
 
 .general {
     font-weight: 700;
     font-size: 2.2em;
-    text-align: center;
 }
 
 .container__balance-general {
@@ -166,6 +168,10 @@ input {
     max-height: 300px;
     min-height: 300px;
     padding: 20px;
+}
+
+.container__registros-items {
+    max-height: 200px;
     overflow-y: scroll;
 }
 
@@ -175,14 +181,13 @@ input {
 }
 
 .container__registros-item{
-    height: 30px;
     font-size: 1.5em;
     font-weight: normal;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #17171756;
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 .container__registros-item--tipo {
@@ -240,10 +245,84 @@ input {
     color: #990000;
 }
 
+.containerDolar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerDolar h2 {
+    text-align: center;
+    color: #171717;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+.contizacionHoy{
+    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.contizacionHoy i {
+    font-size: 4em;
+    margin-bottom: 50px;
+}
+
+.contizacionHoy__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contizacionHoy__form select {
+    font-size: 2em;
+    font-weight: 400;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+}
+
+.contizacionHoy__btn {
+    background-color: #ffffff;
+    color: #171717;
+    font-size: 2em;
+    font-weight: 400;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 30px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.contizacionHoy__btn i {
+    font-size: 1em;
+    margin: 5px;
+}
+
+.contizacionHoy__result {
+    margin-top: 30px;
+}
+
+.contizacionHoy__result h3 {
+    color: #171717;
+    font-size: 2.5em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.contizacionHoy__result > h3 > span {
+    font-weight: 700;
+}
+
 /*=============== FOOTER ===============*/
 .footer {
-    position: relative;
-    bottom: 0;
     width: 100%;
     background-color: #171717;
     align-self: flex-end;
@@ -264,6 +343,13 @@ input {
 
 
 /*=============== INNERHTML DOM ===============*/
+.containerButton{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .tRegistroIngreso {
     font-size: 3em;
 }
@@ -335,7 +421,7 @@ input {
         transform: translateY(-8px) rotate(-45deg)
     }
 
-    .header__content__navbar {
+    .header__navbar {
         background: #000000;
         height: 100%;
         width: 100%;
@@ -350,12 +436,10 @@ input {
         transition: 0.3s;
     }
 
-    .header__content__navbar.active {
+    .header__navbar.active {
         left: 0;
     }
-    .main {
-        padding: 20px 0;
-    }
+
     .container {
         grid-template-areas: 
         "general general"
@@ -366,8 +450,5 @@ input {
         "btnReiniciar btnReiniciar";
         grid-template-columns: 1fr;
         grid-template-rows: 100px 70px 70px 300px 70px 10px;
-    }
-    .contaner__balance-text {
-        text-align: center;
     }
 }

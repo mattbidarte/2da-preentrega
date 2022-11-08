@@ -44,15 +44,16 @@ localStorage.length === 0 && (
 
 // =============== VARIABLES DOM ===============
 const container = document.querySelector('#container')
+const containerDolar = document.querySelector('.containerDolar')
 const tgeneral = document.querySelector('#tgeneral')
 const tgasto = document.querySelector('#tgasto')
 const tingreso = document.querySelector('#tingreso')
 const tregistro = document.querySelector('#tregistro')
-const divRegistros = document.querySelector('#container__registros')
+const divRegistros = document.querySelector('#container__registros-items')
 
-tgeneral.innerHTML = `Balance general: $${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
-tgasto.innerHTML = `Gasto mensual: $${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
-tingreso.innerHTML = `Ingreso mensual: $${new Intl.NumberFormat('de-DE').format(+localStorage.ingresoMes)}`
+tgeneral.innerHTML = `Balance general:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
+tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
+tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.ingresoMes)}`
 
 // =============== BUTTONS ===============
 const btnGasto = document.querySelector('#container__buttons--gasto')
@@ -69,9 +70,9 @@ reciboArray.forEach((item, index) => {
     div.id = `container__registros-item`
     //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
     if(item.tipo === "Ingreso"){
-        div.innerHTML = `<p><img src="./assets/img/arrowup.png" alt="" width=15px> <span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     } else {
-        div.innerHTML = `<p><img src="./assets/img/arrowdown.png" alt="" width=15px> <span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<img src="./assets/img/arrowdown.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     }
     divRegistros.appendChild(div)
 });
@@ -81,14 +82,17 @@ reciboArray.forEach((item, index) => {
 btnIngreso.addEventListener('click', () => {
     container.classList.remove("container")
     container.innerHTML= `
-    <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
-    <form class="form" action="">
-        <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
-        <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
-        <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Ingreso">
-        <button id="btnVolver" class="btnVolver">Volver</button>
-    </form>
+    <div class="containerButton">
+        <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
+        <form class="form" action="">
+            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
+            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
+            <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Ingreso">
+            <button id="btnVolver" class="btnVolver">Volver</button>
+        </form>
+    </div>
     `
+    containerDolar.style.display="none"
     const btnRegistroIngreso = document.querySelector('#btnRegistroIngreso')
     const inpDetalle = document.querySelector('#inpDetalleIngreso')
     const inpMonto = document.querySelector('#inpMontoIngreso')
@@ -133,14 +137,17 @@ btnIngreso.addEventListener('click', () => {
 btnGasto.addEventListener('click', () => {
     container.classList.remove("container")
     container.innerHTML= `
-    <h2 class="tRegistroIngreso">Registro de Gasto</h2>
-    <form class="form" action="">
-        <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
-        <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
-        <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Gasto">
-        <button id="btnVolver" class="btnVolver">Volver</button>
-    </form>
+    <div class="containerButton">
+        <h2 class="tRegistroIngreso">Registro de Gasto</h2>
+        <form class="form" action="">
+            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
+            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
+            <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Gasto">
+            <button id="btnVolver" class="btnVolver">Volver</button>
+        </form>
+    </div>
     `
+    containerDolar.style.display="none"
     const btnRegistroIngreso = document.querySelector('#btnRegistroIngreso')
     const inpDetalle = document.querySelector('#inpDetalleIngreso')
     const inpMonto = document.querySelector('#inpMontoIngreso')
@@ -213,7 +220,80 @@ btnReiniciar.addEventListener('click', () =>{
       })
 })
 
+// =============== Datos de clima ===============
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+        (position) =>{
+            const lat = position.coords.latitude
+            const lon = position.coords.longitude
 
+            const keyPais = `http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lon}&username=mattbidarte`
+
+            const key = "1fe9bccd3ace84b82baff89a1c0053c9"
+            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+            fetch(url)
+                .then(res => {return res.json()})
+                .then(clima => {
+                    // console.log(clima);
+                    let temp = clima.main.temp
+                    let pais = clima.sys.country
+                    let ciudad = clima.name
+                    let html = document.querySelector("body")
+                    // html.innerHTML += `<h2>En tu ciudad ${ciudad}, ${pais}, hacen ${temp.toFixed(0)} °C</h2>`
+                    // console.log(ciudad);
+                    // console.log(pais);
+                })
+            // =============== ver pais ===============
+            // console.log(keyPais);
+            fetch(keyPais)
+                .then((res => {return res.json()}))
+                .then(pais => {
+                    // console.log(pais);
+                    // console.log(pais.countryName);
+                })
+
+        },
+        () => {
+            alert("Tu navegador esta bien pero ocrrió un error")
+        }
+    )
+}else {
+    alert("Tu navegador no dispone de geolocalización")
+}
+
+// =============== Cambio de moneda ===============
+
+const cambioBtn = document.querySelector('.contizacionHoy__btn')
+
+cambioBtn.addEventListener('click', () => {
+    const moneda = document.querySelector('.contizacionHoy__select').value
+    const mostrarCambio = document.querySelector('.contizacionHoy__result')
+    const urlExchangeUsd = `https://v6.exchangerate-api.com/v6/85bbd3d8579a2bb85201db9f/pair/USD/${moneda}`
+    const urlExchangeEur = `https://v6.exchangerate-api.com/v6/85bbd3d8579a2bb85201db9f/pair/EUR/${moneda}`
+    
+    if(moneda == ''){
+        alert('Elegi una moneda')
+    }else{
+        mostrarCambio.innerHTML = `<h3><span>Dolar=</span> CARGANDO...</h3><h3><span>Euro=</span> CARGANDO...</h3>`
+        fetch(urlExchangeUsd)
+            .then((res => {return res.json()}))
+            .then(cambio => {
+                console.log(urlExchangeUsd);
+                console.log(cambio);
+                let cambioUsd = Number(cambio.conversion_rate).toFixed(2) 
+                
+                fetch(urlExchangeEur)
+                    .then((res => {return res.json()}))
+                    .then(cambio => {
+                        console.log(urlExchangeEur);
+                        console.log(cambio);
+                        let cambioEur = Number(cambio.conversion_rate).toFixed(2)
+                        mostrarCambio.innerHTML = `<h3><span>Dolar=</span> $${cambioUsd}${moneda}</h3><h3><span>Euro=</span> $${cambioEur}${moneda}</h3>`
+                    })
+            })
+        
+    }
+})
 
 
 
