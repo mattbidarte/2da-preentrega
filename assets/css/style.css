@@ -94,15 +94,18 @@ input {
 
 /*=============== MAIN ===============*/
 .main {
-    /* margin-top: 60px; */
+    margin-top: 120px;
     /* flex: 1 0 auto; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 .container {
+    /* height: calc(100vh - 120px); */
+    /* max-height: 100vh; */
     height: 100vh;
+    width: 70vw;
     display: grid;
     grid-template-areas: 
     "general gastos"
@@ -113,12 +116,11 @@ input {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100px 100px 300px 70px 10px;
     gap: 2em;
-    justify-content: center;
-    align-content: center;
-    width: 90vw;
+    /* align-content: center; */
 }
+
 .container i {
-    font-size: 3em;
+    font-size: 2.6em;
 }
 
 .contaner__balance-text {
