@@ -1,13 +1,3 @@
-// =============== LIBRERIA SWIPER ===============
-let swiper = new Swiper(".mySwiper", {
-    direction: "vertical",
-    mousewheel: false,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: false,
-    },
-});
-
 // =============== APP ===============
 // =============== PLANTILLA OBJETOS ===============
 class Gasto {
@@ -16,7 +6,6 @@ class Gasto {
         this.detalle = detalle
         this.monto = parseFloat(monto)
         this.fecha = new Date()
-        this.fecha = this.fecha.toLocaleDateString()
     }
 }
 
@@ -26,7 +15,6 @@ class Ingreso {
         this.detalle = detalle
         this.monto = parseFloat(monto)
         this.fecha = new Date()
-        this.fecha = this.fecha.toLocaleDateString()
     }
 }
 
@@ -41,7 +29,6 @@ localStorage.length === 0 && (
 // =============== VARIABLES DOM ===============
 const container = document.querySelector('#container')
 const containerDolar = document.querySelector('.containerDolar')
-const slides = document.querySelector('.swiper-pagination')
 const tgeneral = document.querySelector('#tgeneral')
 const tgasto = document.querySelector('#tgasto')
 const tingreso = document.querySelector('#tingreso')
@@ -61,26 +48,25 @@ console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
 
-reciboArray.forEach((item, index) => {
+reciboArray.forEach((item) => {
     const div = document.createElement("div")
     div.className = `container__registros-item`
     div.id = `container__registros-item`
+    let fecha = new Date(item.fecha).toLocaleDateString();
     //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
     if(item.tipo === "Ingreso"){
-        div.innerHTML = `<img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     } else {
-        div.innerHTML = `<img src="./assets/img/arrowdown.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${item.fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<img src="./assets/img/arrowdown.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     }
     divRegistros.appendChild(div)
 });
 
 // =============== EVENTOS BOTONES ===============
-
 // =============== CLICK BTN INGRESO ===============
 btnIngreso.addEventListener('click', () => {
     container.classList.remove("container")
     containerDolar.style.display='none'
-    slides.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
@@ -101,7 +87,10 @@ btnIngreso.addEventListener('click', () => {
     btnRegistroIngreso.addEventListener('click', (e) => {
         e.preventDefault();
         if (inpDetalle.value == "" || inpMonto.value == "") {
-            alert("No dejes espacios en blanco")
+            Swal.fire({
+                icon: 'error',
+                title: 'No dejes espacios en blanco'
+              })
         }else {
             let balance = +inpMonto.value + Number(localStorage.balance)
             let ingresoMes = +inpMonto.value + Number(localStorage.ingresoMes)
@@ -136,7 +125,6 @@ btnIngreso.addEventListener('click', () => {
 btnGasto.addEventListener('click', () => {
     container.classList.remove("container")
     containerDolar.style.display='none'
-    slides.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Gasto</h2>
@@ -157,11 +145,17 @@ btnGasto.addEventListener('click', () => {
     btnRegistroIngreso.addEventListener('click', (e) => {
         e.preventDefault();
         if (inpDetalle.value == "" || inpMonto.value == "") {
-            alert("No dejes espacios en blanco")
+            Swal.fire({
+                icon: 'error',
+                title: 'No dejes espacios en blanco'
+              })
         }else {
             if(+inpMonto.value > +localStorage.balance){
-                alert(`El monto supera al balance general\nBalance: $${localStorage.balance}`)
-                location.reload()
+                Swal.fire({
+                    icon: 'error',
+                    title: 'El monto supera al balance general',
+                    text: `Balance: $${localStorage.balance}`,
+                  })
             }else {
                 let balance = Number(localStorage.balance) - Number(inpMonto.value)
                 let gastoMes = +inpMonto.value + Number(localStorage.gastoMes)
@@ -230,14 +224,15 @@ cambioBtn.addEventListener('click', () => {
     const urlExchangeEur = `https://v6.exchangerate-api.com/v6/85bbd3d8579a2bb85201db9f/pair/EUR/${moneda}`
     
     if(moneda == ''){
-        alert('Elegi una moneda')
+        Swal.fire({
+            icon: 'error',
+            title: 'Debes que elegir una moneda'
+          })
     }else{
         mostrarCambio.innerHTML = `<h3><span>Dolar=</span> CARGANDO...</h3><h3><span>Euro=</span> CARGANDO...</h3>`
         fetch(urlExchangeUsd)
             .then((res => {return res.json()}))
             .then(cambio => {
-                console.log(urlExchangeUsd);
-                console.log(cambio);
                 let cambioUsd = Number(cambio.conversion_rate).toFixed(2) 
                 
                 fetch(urlExchangeEur)
@@ -248,6 +243,7 @@ cambioBtn.addEventListener('click', () => {
                         let cambioEur = Number(cambio.conversion_rate).toFixed(2)
                         mostrarCambio.innerHTML = `<h3><span>Dolar=</span> $${cambioUsd} ${moneda}</h3><h3><span>Euro=</span> $${cambioEur} ${moneda}</h3>`
                     })
+                    .catch((err) => console.log(err))
             })
         
     }
