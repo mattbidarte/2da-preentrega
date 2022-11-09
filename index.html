@@ -21,77 +21,81 @@
 </head>
 <body>
     <!-- =============== HEADER CON NAVBAR =============== -->
-    <header class="header">
+    <!-- =============== HAMBURGER MENU =============== -->
+    <!-- <header class="header">
         <nav>
             <ul class="header__navbar">
                 <li><a href="#" class="header__navbar-item">Inicio</a></li>
                 <li><a href="#" class="header__navbar-item">Sobre</a></li>
                 <li><a href="#" class="header__navbar-item">Contacto</a></li>
             </ul>
-            <!-- =============== HAMBURGER MENU =============== -->
             <div class="hamburger">
                 <span class="hamburger__bar"></span>
                 <span class="hamburger__bar"></span>
                 <span class="hamburger__bar"></span>
             </div>
         </nav>
-    </header>
+    </header> -->
 
     <main class="main">
         <!-- =============== CONTAINER PRINCIPAL =============== -->
         <section id="container" class="container">
-            <!-- =============== BALANCES =============== -->
-            <div class="container__balance-general">
-                <i class="bi bi-wallet2"></i>
-                <h2 id="tgeneral" class="contaner__balance-text general">Balance general: $</h2>       
-            </div>
-            <div class="container__balance-gastos">
-                <i class="bi bi-arrow-down-right-square"></i>
-                <h2 id="tgasto" class="contaner__balance-text">Gasto mensual: $</h2>
-            </div>
-            <div class="container__balance-ingresos">
-                <i class="bi bi-arrow-up-right-square"></i>
-                <h2 id="tingreso" class="contaner__balance-text">Ingreso mensual: $</h2>
-            </div>
-            <!-- =============== LOG DE REGISTROS =============== -->
-            <div id="container__registros" class="container__registros">
-                <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
-                <div id="container__registros-items" class="container__registros-items"></div>
-            </div>
-            <!-- =============== BOTONES =============== -->
-            <div class="container__buttons">
-                <button id="container__buttons--gasto" class="container__buttons--gasto">Registrar gasto</button>
-                <button id="container__buttons--ingreso" class="container__buttons--ingreso">Registrar ingreso</button>
-            </div>
-            <div class="containerBtnReiniciar">
-                <button id="btnReiniciar" class="btnReiniciar">Reiniciar valores</button>
+            <div class="container__grid">
+                <!-- =============== BALANCES =============== -->
+                <div class="container__balance-general">
+                    <i class="bi bi-wallet2"></i>
+                    <h2 id="tgeneral" class="contaner__balance-text general">Balance general: $</h2>       
+                </div>
+                <div class="container__balance-gastos">
+                    <i class="bi bi-arrow-down-right-square"></i>
+                    <h2 id="tgasto" class="contaner__balance-text">Gasto mensual: $</h2>
+                </div>
+                <div class="container__balance-ingresos">
+                    <i class="bi bi-arrow-up-right-square"></i>
+                    <h2 id="tingreso" class="contaner__balance-text">Ingreso mensual: $</h2>
+                </div>
+                <!-- =============== LOG DE REGISTROS =============== -->
+                <div id="container__registros" class="container__registros">
+                    <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
+                    <div id="container__registros-items" class="container__registros-items"></div>
+                </div>
+                <!-- =============== BOTONES =============== -->
+                <div class="container__buttons">
+                    <button id="container__buttons--gasto" class="container__buttons--gasto">Registrar gasto</button>
+                    <button id="container__buttons--ingreso" class="container__buttons--ingreso">Registrar ingreso</button>
+                </div>
+                <div class="containerBtnReiniciar">
+                    <button id="btnReiniciar" class="btnReiniciar">Reiniciar valores</button>
+                </div>
             </div>
         </section>
 
-        <section class="container containerDolar" id="container">
-            <div class="contizacionHoy">
-                <h2>Cotizacion Dolar y Euro hoy</h2>
-                <i class="bi bi-currency-exchange"></i>
-                <div class="contizacionHoy__form">
-                    <select name="selectMoneda" class="contizacionHoy__select">
-                        <option value="" disabled selected>Elige tu moneda local</option>
-                        <option value="USD">Dólar</option>
-                        <option value="EUR">Euro</option>
-                        <option value="ARS">Peso Argentino</option>
-                        <option value="UYU">Peso Uruguayo</option>
-                        <option value="CLP">Peso Chileno</option>
-                        <option value="MXN">Peso Mexicano</option>
-                        <option value="COP">Peso Colombiano</option>
-                    </select>
-                    <button class="contizacionHoy__btn">
-                        <i class="bi bi-arrow-left-right"></i>
-                        Hacer cambio
-                    </button>
+        <section class="container" id="container">
+            <div class="containerDolar">
+                <div class="contizacionHoy">
+                    <h2>Cotizacion Dolar y Euro hoy</h2>
+                    <i class="bi bi-currency-exchange"></i>
+                    <div class="contizacionHoy__form">
+                        <select name="selectMoneda" class="contizacionHoy__select">
+                            <option value="" disabled selected>Elige tu moneda local</option>
+                            <option value="USD">Dólar</option>
+                            <option value="EUR">Euro</option>
+                            <option value="ARS">Peso Argentino</option>
+                            <option value="UYU">Peso Uruguayo</option>
+                            <option value="CLP">Peso Chileno</option>
+                            <option value="MXN">Peso Mexicano</option>
+                            <option value="COP">Peso Colombiano</option>
+                        </select>
+                        <button class="contizacionHoy__btn">
+                            <i class="bi bi-arrow-left-right"></i>
+                            Hacer cambio
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="contizacionHoy__result">
-                <h3><span>Dolar=</span> Elige tu moneda</h3>
-                <h3><span>Euro=</span> Elige tu moneda</h3>
+                <div class="contizacionHoy__result">
+                    <h3><span>Dolar=</span> Elige tu moneda</h3>
+                    <h3><span>Euro=</span> Elige tu moneda</h3>
+                </div>
             </div>
         </section>
     </main>

@@ -93,16 +93,18 @@ input {
 }
 
 /*=============== MAIN ===============*/
-.main {
-    margin-top: 120px;
-    /* flex: 1 0 auto; */
+.container {
+    width: 70vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
-.container {
-    height: 100vh;
+
+.container__grid {
+    width: 100%;
     display: grid;
     grid-template-areas: 
     "general gastos"
@@ -113,9 +115,6 @@ input {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100px 100px 300px 70px 10px;
     gap: 2em;
-    justify-content: center;
-    align-content: center;
-    width: 90vw;
 }
 .container i {
     font-size: 3em;
@@ -245,13 +244,6 @@ input {
     color: #990000;
 }
 
-.containerDolar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .containerDolar h2 {
     text-align: center;
     color: #171717;
@@ -259,11 +251,9 @@ input {
     font-weight: 700;
 }
 .contizacionHoy{
-    max-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
 }
 
 .contizacionHoy i {
@@ -441,6 +431,10 @@ input {
     }
 
     .container {
+        width: 90vw;
+    }
+
+    .container__grid {
         grid-template-areas: 
         "general general"
         "gastos gastos"
