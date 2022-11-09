@@ -113,7 +113,7 @@ input {
     "botones botones"
     "btnReiniciar btnReiniciar";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px 100px 300px 70px 10px;
+    grid-template-rows: 100px 100px 300px 50px 10px;
     gap: 2em;
 }
 .container i {
@@ -198,25 +198,27 @@ input {
     display: flex;
     justify-content: center;
 }
+.container__buttons i {
+    font-size: 1.2em;
+    margin-right: 2px;
+}
 .container__buttons--gasto,
 .container__buttons--ingreso {
-    width: 120px;
-    height: 70px;
-    font-size: 1.8em;
-    font-weight: 700;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 0 10px;
 }
 
 .container__buttons--gasto{
-    color: white;
     background: #b42929;
-    border-radius: 12px;
     margin-right: 1em;
 }
 
 .container__buttons--ingreso{
     background-color: #3c3caf;
-    color: white;
-    border-radius: 12px;
 }
 
 .container__buttons--gasto:active{
@@ -371,7 +373,7 @@ input {
     color: white;
     padding: 8px;
     font-size: 1.7em;
-    border-radius: 5px;
+    border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -382,7 +384,7 @@ input {
     color: white;
     padding: 5px;
     font-size: 1.5em;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-top: 10px;
     cursor: pointer;
 }
@@ -443,6 +445,6 @@ input {
         "botones botones"
         "btnReiniciar btnReiniciar";
         grid-template-columns: 1fr;
-        grid-template-rows: 100px 70px 70px 300px 70px 10px;
+        grid-template-rows: 100px 70px 70px 300px 50px 10px;
     }
 }

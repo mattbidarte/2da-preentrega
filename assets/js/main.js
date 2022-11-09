@@ -81,12 +81,13 @@ reciboArray.forEach((item, index) => {
 // =============== CLICK BTN INGRESO ===============
 btnIngreso.addEventListener('click', () => {
     container.classList.remove("container")
+    containerDolar.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
         <form class="form" action="">
-            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
-            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
+            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off">
+            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off">
             <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Ingreso">
             <button id="btnVolver" class="btnVolver">Volver</button>
         </form>
@@ -136,12 +137,13 @@ btnIngreso.addEventListener('click', () => {
 // =============== CLICK BTN GASTO ===============
 btnGasto.addEventListener('click', () => {
     container.classList.remove("container")
+    containerDolar.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Gasto</h2>
         <form class="form" action="">
-            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off" required>
-            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off" required>
+            <input id="inpDetalleIngreso" class="formInput" type="text" placeholder="Detalle" autocomplete="off">
+            <input id="inpMontoIngreso" class="formInput" type="number" placeholder="Monto" autocomplete="off">
             <input type="submit" id="btnRegistroIngreso" class="btnRegistroIngreso" value="Registrar Gasto">
             <button id="btnVolver" class="btnVolver">Volver</button>
         </form>
