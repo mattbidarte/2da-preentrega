@@ -290,7 +290,7 @@ cambioBtn.addEventListener('click', () => {
                         console.log(urlExchangeEur);
                         console.log(cambio);
                         let cambioEur = Number(cambio.conversion_rate).toFixed(2)
-                        mostrarCambio.innerHTML = `<h3><span>Dolar=</span> $${cambioUsd}${moneda}</h3><h3><span>Euro=</span> $${cambioEur}${moneda}</h3>`
+                        mostrarCambio.innerHTML = `<h3><span>Dolar=</span> $${cambioUsd} ${moneda}</h3><h3><span>Euro=</span> $${cambioEur} ${moneda}</h3>`
                     })
             })
         
