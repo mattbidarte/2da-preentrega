@@ -42,52 +42,31 @@ input {
     outline: none;
 }
 
-/*=============== HEADER ===============*/
-.header {
-    position: fixed;
-    top: 0;
+/*=============== LIBRERIA SWIPER ===============*/
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+.swiper {
     width: 100%;
-    height: 60px;
-    background-color: #171717;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
     justify-content: center;
-    z-index: 10;
-}
-
-.header__navbar {
-    display: flex;
-    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
     align-items: center;
-    text-transform: uppercase;
-}
-
-.header__navbar-item {
-    color: white;
-    font-size: 1.5em;
-    margin-right: 20px;
-    transition: all 0.2s ease-in-out;
-}
-
-.header__navbar-item:hover {
-    color: blue
-}
-
-/*=============== ICON HAMBURGER MENU ===============*/
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.hamburger__bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    border-radius: 3px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-color: white;
 }
 
 /*=============== MAIN ===============*/
@@ -114,6 +93,7 @@ input {
     grid-template-rows: 100px 100px 300px 50px 10px;
     gap: 2em;
 }
+
 .container i {
     font-size: 3em;
 }
@@ -258,7 +238,7 @@ input {
 
 .contizacionHoy i {
     font-size: 4em;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .contizacionHoy__form {
@@ -282,7 +262,7 @@ input {
     font-size: 2em;
     font-weight: 400;
     border-radius: 5px;
-    margin-top: 10px;
+    margin: 10px 0 60px;
     height: 30px;
     box-shadow: var(--shadow);
     display: flex;
@@ -310,27 +290,6 @@ input {
 .contizacionHoy__result > h3 > span {
     font-weight: 700;
 }
-
-/*=============== FOOTER ===============*/
-.footer {
-    width: 100%;
-    background-color: #171717;
-    align-self: flex-end;
-}
-
-.footerContainer {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer H2 {
-    color: white;
-    font-size: 1.5em;
-    text-align: center;
-}
-
 
 /*=============== INNERHTML DOM ===============*/
 .containerButton{

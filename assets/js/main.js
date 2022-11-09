@@ -1,16 +1,12 @@
-// =============== HAMBURGUER MENU ===============
-// const hamburger = document.querySelector(".hamburger");
-// const navMenu = document.querySelector(".header__content__navbar");
-
-// hamburger.addEventListener("click", () => {
-//     hamburger.classList.toggle("active");
-//     navMenu.classList.toggle("active");
-// })
-// document.querySelectorAll(".header__content__navbar-item").forEach(n => n.addEventListener("click", () => {
-//     hamburger.classList.remove("active");
-//     navMenu.classList.remove("active");
-// }))
-
+// =============== LIBRERIA SWIPER ===============
+let swiper = new Swiper(".mySwiper", {
+    direction: "vertical",
+    mousewheel: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+});
 
 // =============== APP ===============
 // =============== PLANTILLA OBJETOS ===============
@@ -45,6 +41,7 @@ localStorage.length === 0 && (
 // =============== VARIABLES DOM ===============
 const container = document.querySelector('#container')
 const containerDolar = document.querySelector('.containerDolar')
+const slides = document.querySelector('.swiper-pagination')
 const tgeneral = document.querySelector('#tgeneral')
 const tgasto = document.querySelector('#tgasto')
 const tingreso = document.querySelector('#tingreso')
@@ -78,10 +75,12 @@ reciboArray.forEach((item, index) => {
 });
 
 // =============== EVENTOS BOTONES ===============
+
 // =============== CLICK BTN INGRESO ===============
 btnIngreso.addEventListener('click', () => {
     container.classList.remove("container")
     containerDolar.style.display='none'
+    slides.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Ingreso</h2>
@@ -118,8 +117,7 @@ btnIngreso.addEventListener('click', () => {
             Toastify({
                 text: "Ingreso registrado correctamente!",
                 duration: 3000,
-                offset: {
-                    x: 50, 
+                offset: { 
                     y: 60
                 },
                 className: "tostada"
@@ -138,6 +136,7 @@ btnIngreso.addEventListener('click', () => {
 btnGasto.addEventListener('click', () => {
     container.classList.remove("container")
     containerDolar.style.display='none'
+    slides.style.display='none'
     container.innerHTML= `
     <div class="containerButton">
         <h2 class="tRegistroIngreso">Registro de Gasto</h2>
@@ -178,8 +177,7 @@ btnGasto.addEventListener('click', () => {
                 Toastify({
                     text: "Gasto registrado correctamente!",
                     duration: 3000,
-                    offset: {
-                        x: 50, 
+                    offset: { 
                         y: 60
                     },
                     className: "tostada"
@@ -209,62 +207,20 @@ btnReiniciar.addEventListener('click', () =>{
         confirmButtonText: 'Si, reiniciar!'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Datos borrados!',
-            'Se han reiniciado los valores',
-            'success',
-          )
-        localStorage.clear()
-        setTimeout(()=> {
-            location.reload()
-        }, 1500)
+            Swal.fire(
+                'Datos borrados!',
+                'Se han reiniciado los valores',
+                'success',
+            )
+            localStorage.clear()
+            setTimeout(()=> {
+                location.reload()
+            }, 1500)
         }
       })
 })
 
-// =============== Datos de clima ===============
-if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-        (position) =>{
-            const lat = position.coords.latitude
-            const lon = position.coords.longitude
-
-            const keyPais = `http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lon}&username=mattbidarte`
-
-            const key = "1fe9bccd3ace84b82baff89a1c0053c9"
-            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
-            fetch(url)
-                .then(res => {return res.json()})
-                .then(clima => {
-                    // console.log(clima);
-                    let temp = clima.main.temp
-                    let pais = clima.sys.country
-                    let ciudad = clima.name
-                    let html = document.querySelector("body")
-                    // html.innerHTML += `<h2>En tu ciudad ${ciudad}, ${pais}, hacen ${temp.toFixed(0)} °C</h2>`
-                    // console.log(ciudad);
-                    // console.log(pais);
-                })
-            // =============== ver pais ===============
-            // console.log(keyPais);
-            fetch(keyPais)
-                .then((res => {return res.json()}))
-                .then(pais => {
-                    // console.log(pais);
-                    // console.log(pais.countryName);
-                })
-
-        },
-        () => {
-            alert("Tu navegador esta bien pero ocrrió un error")
-        }
-    )
-}else {
-    alert("Tu navegador no dispone de geolocalización")
-}
-
 // =============== Cambio de moneda ===============
-
 const cambioBtn = document.querySelector('.contizacionHoy__btn')
 
 cambioBtn.addEventListener('click', () => {
