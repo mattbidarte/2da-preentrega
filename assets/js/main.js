@@ -1,10 +1,10 @@
 // =============== LIBRERIA SWIPER ===============
 let swiper = new Swiper(".mySwiper", {
     direction: "vertical",
-    mousewheel: true,
+    mousewheel: false,
     pagination: {
       el: ".swiper-pagination",
-      clickable: true,
+      clickable: false,
     },
 });
 
