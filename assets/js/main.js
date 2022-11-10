@@ -1,3 +1,23 @@
+// =============== DARK MODE ===============
+const main = document.querySelector('main')
+const btnDark = document.querySelector('.togglebtn')
+const toggle = document.querySelector('.bi-toggle-off')
+
+btnDark.addEventListener('click', () => {
+    let val = main.classList.toggle("dark")
+    toggle.classList.toggle('bi-toggle-on')
+    localStorage.setItem('modo', val)
+})
+
+let valor = localStorage.getItem('modo')
+if(valor == "true"){
+    main.classList.add('dark')
+    toggle.classList.add('bi-toggle-on')
+} else {
+    main.classList.remove('dark')
+    toggle.classList.add('bi-toggle-off')
+}
+
 // =============== APP ===============
 // =============== PLANTILLA OBJETOS ===============
 class Gasto {
@@ -47,7 +67,7 @@ const btnIngreso = document.querySelector('#container__buttons--ingreso')
 console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
-
+{/* <img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"> */}
 reciboArray.forEach((item) => {
     const div = document.createElement("div")
     div.className = `container__registros-item`
@@ -55,9 +75,9 @@ reciboArray.forEach((item) => {
     let fecha = new Date(item.fecha).toLocaleDateString();
     //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
     if(item.tipo === "Ingreso"){
-        div.innerHTML = `<img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     } else {
-        div.innerHTML = `<img src="./assets/img/arrowdown.png" alt="" width=20px style="margin-right:5px;"><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     }
     divRegistros.appendChild(div)
 });
