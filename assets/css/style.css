@@ -141,10 +141,10 @@ input {
 }
 
 .registros__select {
-     background-color: transparent;
-     border: 1px solid #171717;
-     border-radius: 5px;
-     font-size: 1.5em;
+    background-color: var(--gris);
+    border: 1px solid #171717;
+    border-radius: 5px;
+    font-size: 1.5em;
 }
 
 .registros__select:focus {

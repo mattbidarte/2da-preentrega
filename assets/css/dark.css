@@ -26,3 +26,7 @@
     background-color: #383838;
 }
 
+.dark .registros__select {
+    border: 1px solid #fff
+}
+

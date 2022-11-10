@@ -55,104 +55,154 @@ const tingreso = document.querySelector('#tingreso')
 const tregistro = document.querySelector('#tregistro')
 const divRegistros = document.querySelector('#container__registros-items')
 
+// console.log(JSON.parse(localStorage.arrayBalance))
+const reciboArray = JSON.parse(localStorage.arrayBalance)
+reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
+
+// const sumall = reciboArray.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
+    
+// console.log(sumall);
+console.log(reciboArray);
+
+reciboArray.forEach((item) => {
+    let fecha = new Date(item.fecha).getMonth()
+    let mesActual = new Date().getMonth()
+})
+const arrIngresos = reciboArray.filter((el) => el.tipo.includes('Ingreso'))
+console.log(arrIngresos);
+arrIngresos.forEach((item) => {
+    let fecha = new Date(item.fecha).getMonth()
+    let mesActual = new Date().getMonth()
+    if (fecha == mesActual){
+        const sumaIngresosMes = arrIngresos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
+        console.log(sumaIngresosMes);
+        tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(sumaIngresosMes)}`
+    }
+})
+// const sumIngresos = arrIngresos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
+// console.log(sumIngresos);
+
 tgeneral.innerHTML = `Balance general:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
 tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
-tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.ingresoMes)}`
+
 
 // =============== BUTTONS ===============
 const btnGasto = document.querySelector('#container__buttons--gasto')
 const btnIngreso = document.querySelector('#container__buttons--ingreso')
 
 // =============== MUESTREO REGISTROS ===============
-console.log(JSON.parse(localStorage.arrayBalance))
-const reciboArray = JSON.parse(localStorage.arrayBalance)
-reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
 const filter = document.querySelector('.registros__select')
 
-filter.value = 'noFilter'
-
-reciboArray.forEach((item) => {
-    const div = document.createElement("div")
-    div.className = `container__registros-item`
-    div.id = `container__registros-item`
-    let fecha = new Date(item.fecha).toLocaleDateString();
-    //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
-    if(item.tipo === "Ingreso"){
-        div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-    } else {
-        div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-    }
-    divRegistros.appendChild(div)
-});
+if(reciboArray.length == 0){
+    divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
+}else {
+    reciboArray.forEach((item) => {
+        const div = document.createElement("div")
+        div.className = `container__registros-item`
+        div.id = `container__registros-item`
+        let fecha = new Date(item.fecha).toLocaleDateString();
+        //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
+        if(item.tipo === "Ingreso"){
+            div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        } else {
+            div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+        }
+        divRegistros.appendChild(div)
+    });
+}
 
 filter.addEventListener('change', () => {
     switch (filter.value) {
         case 'noFilter':
             divRegistros.innerHTML = ''
-            
-            reciboArray.forEach((item) => {
-                const div = document.createElement("div")
-                div.className = `container__registros-item`
-                div.id = `container__registros-item`
-                let fecha = new Date(item.fecha).toLocaleDateString();
-                //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
-                
-                if(item.tipo === "Ingreso"){
-                    div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-                } else {
-                    div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-                }
-                divRegistros.appendChild(div)
-            });
+            if(reciboArray.length == 0){
+                divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
+            }else {
+                reciboArray.forEach((item) => {
+                    const div = document.createElement("div")
+                    div.className = `container__registros-item`
+                    div.id = `container__registros-item`
+                    let fecha = new Date(item.fecha).toLocaleDateString();
+                    //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
+                    if(item.tipo === "Ingreso"){
+                        div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                    } else {
+                        div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                    }
+                    divRegistros.appendChild(div)
+                });
+            }   
             break
+            
         case 'ingresos':
             divRegistros.innerHTML = ''
 
             const arrayIngresos = reciboArray.filter((el) => el.tipo.includes('Ingreso'))
-            arrayIngresos.forEach((item) => {
-                const div = document.createElement("div")
-                div.className = `container__registros-item`
-                div.id = `container__registros-item`
-                let fecha = new Date(item.fecha).toLocaleDateString();
-                
-                div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-                divRegistros.appendChild(div)
-            });
+            if(arrayIngresos.length == 0){
+                divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
+            }else {
+                arrayIngresos.forEach((item) => {
+                    const div = document.createElement("div")
+                    div.className = `container__registros-item`
+                    div.id = `container__registros-item`
+                    let fecha = new Date(item.fecha).toLocaleDateString();
+                    
+                    div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                    divRegistros.appendChild(div)
+                });
+            }
             break
+
         case 'gastos':
             divRegistros.innerHTML = ''
-            
+
             const arrayGastos = reciboArray.filter((el) => el.tipo.includes('Gasto'))
-            arrayGastos.forEach((item) => {
-                const div = document.createElement("div")
-                div.className = `container__registros-item`
-                div.id = `container__registros-item`
-                let fecha = new Date(item.fecha).toLocaleDateString();
-                
-                div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-                divRegistros.appendChild(div)
-            });
+            if(arrayGastos.length == 0){
+                divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
+            }else {
+                arrayGastos.forEach((item) => {
+                    const div = document.createElement("div")
+                    div.className = `container__registros-item`
+                    div.id = `container__registros-item`
+                    let fecha = new Date(item.fecha).toLocaleDateString();
+                    
+                    div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                    divRegistros.appendChild(div)
+                });
+            }
             break
-        default:
+
+        case 'mes':
+            divRegistros.innerHTML = ''
+            if(reciboArray.length == 0){
+                divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
+            }else {
+                reciboArray.forEach((item) => {
+                    let fecha = new Date(item.fecha).getMonth()
+                    let mesActual = new Date().getMonth()
+
+                    if(fecha == mesActual) {
+                        fecha = new Date(item.fecha).toLocaleDateString()
+                        const div = document.createElement("div")
+                        div.className = `container__registros-item`
+                        div.id = `container__registros-item`
+                        if(item.tipo === "Ingreso"){
+                            div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                        } else {
+                            div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                        }
+                        divRegistros.appendChild(div)
+                    }else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Aún no tienes registros este mes!'
+                        })
+                    } 
+                });
+            }   
             break
     }
 })
-
-
-reciboArray.forEach((item) => {
-    // const div = document.createElement("div")
-    // div.className = `container__registros-item`
-    // div.id = `container__registros-item`
-    // let fecha = new Date(item.fecha).toLocaleDateString();
-    // //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
-    
-    // if(item.tipo === "Ingreso"){
-    //     div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-    // } else {
-    //     div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
-    // }
-    // divRegistros.appendChild(div)
-});
 
 // =============== EVENTOS BOTONES ===============
 // =============== CLICK BTN INGRESO ===============
@@ -314,7 +364,6 @@ document.querySelector('.arrowUp').addEventListener('click', () => {
     window.scrollBy(0, -window.innerHeight);
 })
 
-
 // =============== CAMBIO DE MONEDA ===============
 const cambioBtn = document.querySelector('.contizacionHoy__btn')
 
@@ -344,7 +393,10 @@ cambioBtn.addEventListener('click', () => {
                         let cambioEur = Number(cambio.conversion_rate).toFixed(2)
                         mostrarCambio.innerHTML = `<h3><span>Dolar=</span> $${cambioUsd} ${moneda}</h3><h3><span>Euro=</span> $${cambioEur} ${moneda}</h3>`
                     })
-                    .catch((err) => console.log(err))
+                    .catch((err) => {
+                        console.log(err)
+                        alert(err)
+                    })
             })
         
     }
