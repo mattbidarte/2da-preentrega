@@ -12,7 +12,16 @@
     color: #fff;
 }
 
-.formInput {
+.dark .container__registros-item {
     border-bottom: 1px solid #fff;
+}
+
+.dark .formInput {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.dark .formInput:focus {
+    background-color: #383838;
 }
 
