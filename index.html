@@ -42,7 +42,21 @@
                     </div>
                     <!-- =============== LOG DE REGISTROS =============== -->
                     <div id="container__registros" class="container__registros">
-                        <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
+                        <div class="container__registros-filter">
+                            <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
+                            <select class="registros__select" name="filtros" id="">
+                                <option value="noFilter" selected>Sin filtros</option>
+                                <optgroup label="Por registros">
+                                    <option value="ingresos">Solo ingresos</option>
+                                    <option value="gastos">Solo gastos</option>
+                                </optgroup>
+                                <optgroup label="Por fechas">
+                                    <option value="semana">Semana actual</option>
+                                    <option value="mes">Mes actual</option>
+                                    <option value="mesAnt">Mes anterior</option>
+                                </optgroup>
+                            </select>
+                        </div>
                         <div id="container__registros-items" class="container__registros-items"></div>
                     </div>
                     <!-- =============== BOTONES =============== -->

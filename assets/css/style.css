@@ -131,6 +131,26 @@ input {
     min-height: 300px;
     padding: 20px;
 }
+.container__registros-filter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.registros__select {
+     background-color: transparent;
+     border: 1px solid #171717;
+     border-radius: 5px;
+     font-size: 1.5em;
+}
+
+.registros__select:focus {
+    border: 2px solid #0000ce;
+    outline: none;
+}
 
 .container__registros-items {
     max-height: 200px;
@@ -138,7 +158,6 @@ input {
 }
 
 .tRegistros{
-    margin-bottom: 1em;
     font-weight: bold;
 }
 

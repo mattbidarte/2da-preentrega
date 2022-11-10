@@ -67,6 +67,9 @@ const btnIngreso = document.querySelector('#container__buttons--ingreso')
 console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
+const filter = document.querySelector('.registros__select')
+
+filter.value = 'noFilter'
 
 reciboArray.forEach((item) => {
     const div = document.createElement("div")
@@ -80,6 +83,75 @@ reciboArray.forEach((item) => {
         div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
     }
     divRegistros.appendChild(div)
+});
+
+filter.addEventListener('change', () => {
+    switch (filter.value) {
+        case 'noFilter':
+            divRegistros.innerHTML = ''
+            
+            reciboArray.forEach((item) => {
+                const div = document.createElement("div")
+                div.className = `container__registros-item`
+                div.id = `container__registros-item`
+                let fecha = new Date(item.fecha).toLocaleDateString();
+                //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
+                
+                if(item.tipo === "Ingreso"){
+                    div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                } else {
+                    div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                }
+                divRegistros.appendChild(div)
+            });
+            break
+        case 'ingresos':
+            divRegistros.innerHTML = ''
+
+            const arrayIngresos = reciboArray.filter((el) => el.tipo.includes('Ingreso'))
+            arrayIngresos.forEach((item) => {
+                const div = document.createElement("div")
+                div.className = `container__registros-item`
+                div.id = `container__registros-item`
+                let fecha = new Date(item.fecha).toLocaleDateString();
+                
+                div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                divRegistros.appendChild(div)
+            });
+            break
+        case 'gastos':
+            divRegistros.innerHTML = ''
+            
+            const arrayGastos = reciboArray.filter((el) => el.tipo.includes('Gasto'))
+            arrayGastos.forEach((item) => {
+                const div = document.createElement("div")
+                div.className = `container__registros-item`
+                div.id = `container__registros-item`
+                let fecha = new Date(item.fecha).toLocaleDateString();
+                
+                div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+                divRegistros.appendChild(div)
+            });
+            break
+        default:
+            break
+    }
+})
+
+
+reciboArray.forEach((item) => {
+    // const div = document.createElement("div")
+    // div.className = `container__registros-item`
+    // div.id = `container__registros-item`
+    // let fecha = new Date(item.fecha).toLocaleDateString();
+    // //Si es un ingreso se muestra una flecha hacía arriba, sino hacia abajo
+    
+    // if(item.tipo === "Ingreso"){
+    //     div.innerHTML = `<i class="bi bi-arrow-up-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+    // } else {
+    //     div.innerHTML = `<i class="bi bi-arrow-down-short" style="margin-right:5px; font-size: 1.5em"></i><p><span class="container__registros-item--tipo">${item.tipo}:</span> ${fecha} - ${item.detalle} - $${new Intl.NumberFormat('de-DE').format(+item.monto)}</p>`
+    // }
+    // divRegistros.appendChild(div)
 });
 
 // =============== EVENTOS BOTONES ===============
