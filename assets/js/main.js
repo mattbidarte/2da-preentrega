@@ -64,10 +64,6 @@ reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
 // console.log(sumall);
 console.log(reciboArray);
 
-reciboArray.forEach((item) => {
-    let fecha = new Date(item.fecha).getMonth()
-    let mesActual = new Date().getMonth()
-})
 const arrIngresos = reciboArray.filter((el) => el.tipo.includes('Ingreso'))
 console.log(arrIngresos);
 arrIngresos.forEach((item) => {
@@ -79,11 +75,24 @@ arrIngresos.forEach((item) => {
         tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(sumaIngresosMes)}`
     }
 })
+
+
+const arrGastos = reciboArray.filter((el) => el.tipo.includes('Gasto'))
+console.log(arrGastos);
+arrGastos.forEach((item) => {
+    let fecha = new Date(item.fecha).getMonth()
+    let mesActual = new Date().getMonth()
+    if (fecha == mesActual){
+        const sumaGastoMes = arrGastos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
+        console.log(sumaGastoMes);
+        tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(sumaGastoMes)}`
+    }
+})
 // const sumIngresos = arrIngresos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
 // console.log(sumIngresos);
 
 tgeneral.innerHTML = `Balance general:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
-tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
+// tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
 
 
 // =============== BUTTONS ===============

@@ -1,4 +1,5 @@
-.dark {
+
+.dark, body{
     background-color: #171717;
     --gris: #171717;
     --shadow: 9px 9px 21px #000000, -9px -9px 21px #1a1a1a;
