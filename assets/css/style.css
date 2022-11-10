@@ -216,6 +216,23 @@ input {
     color: #990000;
 }
 
+.arrowDwn{
+    color: #171717;
+    margin-top: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    animation: vertical-shaking 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes vertical-shaking {
+    0% { transform: translatey(0) }
+    25% { transform: translatey(5px) }
+    50% { transform: translatey(-5px) }
+    75% { transform: translatey(5px) }
+    100% { transform: translatey(0) }
+}
+
 .containerDolar h2 {
     text-align: center;
     color: #171717;

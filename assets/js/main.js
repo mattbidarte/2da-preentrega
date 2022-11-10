@@ -67,7 +67,7 @@ const btnIngreso = document.querySelector('#container__buttons--ingreso')
 console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
-{/* <img src="./assets/img/arrowup.png" alt="" width=20px style="margin-right:5px;"> */}
+
 reciboArray.forEach((item) => {
     const div = document.createElement("div")
     div.className = `container__registros-item`
@@ -137,6 +137,8 @@ btnIngreso.addEventListener('click', () => {
         }
     })
     btnVolver.addEventListener('click', () => {
+        
+        alert()
         location.reload()
     })
 })
