@@ -137,8 +137,6 @@ btnIngreso.addEventListener('click', () => {
         }
     })
     btnVolver.addEventListener('click', () => {
-        
-        alert()
         location.reload()
     })
 })
@@ -235,8 +233,17 @@ btnReiniciar.addEventListener('click', () =>{
         }
       })
 })
+// =============== CAMBIAR SECCION ===============
+document.querySelector('.arrowDwn').addEventListener('click', () => {
+    window.scrollBy(0, window.innerHeight);
+})
 
-// =============== Cambio de moneda ===============
+document.querySelector('.arrowUp').addEventListener('click', () => {
+    window.scrollBy(0, -window.innerHeight);
+})
+
+
+// =============== CAMBIO DE MONEDA ===============
 const cambioBtn = document.querySelector('.contizacionHoy__btn')
 
 cambioBtn.addEventListener('click', () => {

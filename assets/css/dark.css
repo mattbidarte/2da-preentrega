@@ -8,7 +8,8 @@
 .dark h2,
 .dark h3,
 .dark select,
-.dark button {
+.dark button,
+.dark i {
     color: #fff;
 }
 
