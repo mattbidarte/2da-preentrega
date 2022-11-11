@@ -55,44 +55,13 @@ const tingreso = document.querySelector('#tingreso')
 const tregistro = document.querySelector('#tregistro')
 const divRegistros = document.querySelector('#container__registros-items')
 
-// console.log(JSON.parse(localStorage.arrayBalance))
+console.log(JSON.parse(localStorage.arrayBalance))
 const reciboArray = JSON.parse(localStorage.arrayBalance)
 reciboArray.reverse() //Para ordenar de mas reciente a mas antiguo
 
-// const sumall = reciboArray.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
-    
-// console.log(sumall);
-console.log(reciboArray);
-
-const arrIngresos = reciboArray.filter((el) => el.tipo.includes('Ingreso'))
-console.log(arrIngresos);
-arrIngresos.forEach((item) => {
-    let fecha = new Date(item.fecha).getMonth()
-    let mesActual = new Date().getMonth()
-    if (fecha == mesActual){
-        const sumaIngresosMes = arrIngresos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
-        console.log(sumaIngresosMes);
-        tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(sumaIngresosMes)}`
-    }
-})
-
-
-const arrGastos = reciboArray.filter((el) => el.tipo.includes('Gasto'))
-console.log(arrGastos);
-arrGastos.forEach((item) => {
-    let fecha = new Date(item.fecha).getMonth()
-    let mesActual = new Date().getMonth()
-    if (fecha == mesActual){
-        const sumaGastoMes = arrGastos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
-        console.log(sumaGastoMes);
-        tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(sumaGastoMes)}`
-    }
-})
-// const sumIngresos = arrIngresos.map(item => item.monto).reduce((prev, curr) => prev + curr, 0);
-// console.log(sumIngresos);
-
 tgeneral.innerHTML = `Balance general:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.balance)}`
-// tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
+tgasto.innerHTML = `Gasto mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.gastoMes)}`
+tingreso.innerHTML = `Ingreso mensual:<br>$${new Intl.NumberFormat('de-DE').format(+localStorage.ingresoMes)}`
 
 
 // =============== BUTTONS ===============
@@ -183,6 +152,7 @@ filter.addEventListener('change', () => {
 
         case 'mes':
             divRegistros.innerHTML = ''
+            
             if(reciboArray.length == 0){
                 divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
             }else {
