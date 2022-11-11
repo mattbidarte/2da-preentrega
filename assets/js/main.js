@@ -152,7 +152,7 @@ filter.addEventListener('change', () => {
 
         case 'mes':
             divRegistros.innerHTML = ''
-            
+
             if(reciboArray.length == 0){
                 divRegistros.innerHTML = '<p style="font-size: 2em; margin: 20px 10px">Sin registros...</p>'
             }else {
@@ -184,6 +184,7 @@ filter.addEventListener('change', () => {
 })
 
 // =============== EVENTOS BOTONES ===============
+
 // =============== CLICK BTN INGRESO ===============
 btnIngreso.addEventListener('click', () => {
     container.classList.remove("container")
