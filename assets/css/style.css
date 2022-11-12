@@ -58,13 +58,16 @@ input {
 /*=============== MAIN ===============*/
 .container {
     width: 70vw;
-    height: 100vh;
+    /* height: 100vh; */
+    margin: 0px auto;
+    padding-top: 50px;
+}
+
+.container__flex {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0px auto;
-    padding-top: 50px;
 }
 
 .container__grid {
@@ -277,11 +280,11 @@ input {
     font-weight: 700;
 }
 
-.contizacionHoy{
+/* .contizacionHoy{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .contizacionHoy i {
     font-size: 4em;

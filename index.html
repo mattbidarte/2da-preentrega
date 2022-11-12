@@ -20,53 +20,55 @@
     <body>
         <main class="main"> 
             <section id="container" class="container">
-                <div class="togglebtn">
-                    <h3>Dark Mode</h3>
-                    <i class="bi bi-toggle-off"></i>
-                </div>
-                <!-- =============== APP PRINCIPAL =============== -->
-                <div class="container__grid">
-                    <!-- =============== BALANCES =============== -->
-                    <div class="container__balance-general">
-                        <i class="bi bi-wallet2"></i>
-                        <h2 id="tgeneral" class="contaner__balance-text general">Balance general: $</h2>       
+                <div class="container__flex">
+                    <div class="togglebtn">
+                        <h3>Dark Mode</h3>
+                        <i class="bi bi-toggle-off"></i>
                     </div>
-                    <div class="container__balance-gastos">
-                        <i class="bi bi-arrow-down-right-square"></i>
-                        <h2 id="tgasto" class="contaner__balance-text">Gasto mensual: $</h2>
-                    </div>
-                    <div class="container__balance-ingresos">
-                        <i class="bi bi-arrow-up-right-square"></i>
-                        <h2 id="tingreso" class="contaner__balance-text">Ingreso mensual: $</h2>
-                    </div>
-                    <!-- =============== LOG DE REGISTROS =============== -->
-                    <div id="container__registros" class="container__registros">
-                        <div class="container__registros-filter">
-                            <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
-                            <select class="registros__select" name="filtros" id="">
-                                <option value="noFilter" selected>Sin filtros</option>
-                                <optgroup label="Por registros">
-                                    <option value="ingresos">Solo ingresos</option>
-                                    <option value="gastos">Solo gastos</option>
-                                </optgroup>
-                                <optgroup label="Por fechas">
-                                    <option value="mes">Mes actual</option>
-                                </optgroup>
-                            </select>
+                    <!-- =============== APP PRINCIPAL =============== -->
+                    <div class="container__grid">
+                        <!-- =============== BALANCES =============== -->
+                        <div class="container__balance-general">
+                            <i class="bi bi-wallet2"></i>
+                            <h2 id="tgeneral" class="contaner__balance-text general">Balance general: $</h2>       
                         </div>
-                        <div id="container__registros-items" class="container__registros-items"></div>
+                        <div class="container__balance-gastos">
+                            <i class="bi bi-arrow-down-right-square"></i>
+                            <h2 id="tgasto" class="contaner__balance-text">Gasto mensual: $</h2>
+                        </div>
+                        <div class="container__balance-ingresos">
+                            <i class="bi bi-arrow-up-right-square"></i>
+                            <h2 id="tingreso" class="contaner__balance-text">Ingreso mensual: $</h2>
+                        </div>
+                        <!-- =============== LOG DE REGISTROS =============== -->
+                        <div id="container__registros" class="container__registros">
+                            <div class="container__registros-filter">
+                                <h2 id="tregistro" class="contaner__balance-text tRegistros">Registros:</h2>
+                                <select class="registros__select" name="filtros" id="">
+                                    <option value="noFilter" selected>Sin filtros</option>
+                                    <optgroup label="Por registros">
+                                        <option value="ingresos">Solo ingresos</option>
+                                        <option value="gastos">Solo gastos</option>
+                                    </optgroup>
+                                    <optgroup label="Por fechas">
+                                        <option value="mes">Mes actual</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div id="container__registros-items" class="container__registros-items"></div>
+                        </div>
+                        <!-- =============== BOTONES =============== -->
+                        <div class="container__buttons">
+                            <button id="container__buttons--gasto" class="container__buttons--gasto"><i class="bi bi-arrow-down-right"></i>Añadir gasto</button>
+                            <button id="container__buttons--ingreso" class="container__buttons--ingreso"><i class="bi bi-arrow-up-right"></i>Añadir ingreso</button>
+                        </div>
+                        <div class="containerBtnReiniciar">
+                            <button id="btnReiniciar" class="btnReiniciar">Reiniciar valores</button>
+                        </div>
                     </div>
-                    <!-- =============== BOTONES =============== -->
-                    <div class="container__buttons">
-                        <button id="container__buttons--gasto" class="container__buttons--gasto"><i class="bi bi-arrow-down-right"></i>Añadir gasto</button>
-                        <button id="container__buttons--ingreso" class="container__buttons--ingreso"><i class="bi bi-arrow-up-right"></i>Añadir ingreso</button>
+                    <div class="arrowDwn">
+                        <i class="bi bi-arrow-down-circle"></i>
                     </div>
-                    <div class="containerBtnReiniciar">
-                        <button id="btnReiniciar" class="btnReiniciar">Reiniciar valores</button>
-                    </div>
-                </div>
-                <div class="arrowDwn">
-                    <i class="bi bi-arrow-down-circle"></i>
                 </div>
             </section>
             
@@ -100,6 +102,7 @@
                     <i class="bi bi-arrow-up-circle"></i>
                 </div>
             </section>
+
         </main>
 
         <!-- =============== LLAMADOS A SCRIPTS =============== -->
